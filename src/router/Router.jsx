@@ -6,6 +6,7 @@ import WhiteList from "../pages/whiteList/WhiteList";
 import Tranding from "../pages/tranding/Tranding";
 import Contact from "../pages/contact/Contact";
 import Blogs from "../pages/blogs/Blogs";
+import { Login } from "../pages/log/Login";
 
 export const router = createBrowserRouter([
     {
@@ -41,5 +42,10 @@ export const router = createBrowserRouter([
                 element: <Blogs></Blogs>
             }
         ]
+    },
+    {
+        path: '/login',
+        element: <Login />
     }
+
 ])

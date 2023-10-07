@@ -5,24 +5,38 @@ import LogoWithSearchNav from "../../components/LogoWithSearchNav/LogoWithSearch
 import DesktopNav from "../../components/desktopNav/DesktopNav";
 
 import SideNavBar from "../../components/sideNavBar/SideNavBar";
+import Footer from "../../components/footer/Footer";
+import MobileNav from "../../components/mobileNav/MobileNav";
 const Main = () => {
   return (
     <div className="">
       <header>
         {/* top nav  */}
-       <TopHeader></TopHeader>
+        <TopHeader></TopHeader>
         {/* logo with search and shoping cart  */}
-        <LogoWithSearchNav></LogoWithSearchNav>
+        <div className="flex justify-between items-center ">
+          <div className=" md:hidden">
+            <SideNavBar></SideNavBar>
+          </div>
+          <LogoWithSearchNav></LogoWithSearchNav>
+          {/* Mobile nav  */}
+          <div className="md:hidden">
+            <MobileNav />
+          </div>
+          
+        </div>
         {/* Desktop Navbar  */}
-        <DesktopNav></DesktopNav>
+          <DesktopNav></DesktopNav>
       </header>
-      <div className="container mx-auto flex space-x-2">
-        <SideNavBar></SideNavBar>
-        <div className="md:ml-48 container mx-auto border">
-        <Outlet></Outlet>
+      <div className="container mx-auto grid md:flex md:space-x-2">
+        <div className="hidden md:block ">
+          <SideNavBar></SideNavBar>
+        </div>
+        <div className="md:ml-48 container mx-auto border px-2">
+          <Outlet></Outlet>
         </div>
       </div>
-      <footer>footer</footer>
+      <Footer></Footer>
     </div>
   );
 };

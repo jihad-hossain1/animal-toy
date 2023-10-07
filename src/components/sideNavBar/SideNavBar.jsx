@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import {AiOutlinePicRight} from 'react-icons/ai'
+import {AiOutlinePicRight, } from 'react-icons/ai'
 import {
-  Card,
+  Drawer,
+  Button,
   Typography,
+  IconButton,
+
   List,
   ListItem,
   ListItemPrefix,
@@ -21,15 +24,23 @@ import {GiBoxUnpacking} from 'react-icons/gi'
 import {LuMailQuestion} from 'react-icons/lu'
 import {TbArrowRoundaboutRight} from 'react-icons/tb'
 import {RiBearSmileLine} from 'react-icons/ri'
+import {RxCross2} from 'react-icons/rx'
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 
 
 const SideNavBar = () => {
     const [open, setOpen] = useState(0);
- 
+    const [openCategory, setOpenCategory] = useState(false);
+
+   
+    
     const handleOpen = (value) => {
       setOpen(open === value ? 0 : value);
     };
+
+    const openDrawer = () => setOpenCategory(true);
+  const closeDrawer = () => setOpenCategory(false);
+
     const sideNvList = (
         <>
         <List>
@@ -151,7 +162,7 @@ const SideNavBar = () => {
     return (
         <>
   
-        <div className="border h-[calc(100vh-2rem)] w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5 sticky top-0">
+        <div className="hidden md:block border h-[calc(100vh-2rem)] w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5 sticky top-0">
       <div className="mb-2">
       <div className="bg-[#ffd92e]  drop-shadow">
           <h4 className=" w-full uppercase font-semibold py-3 flex items-center  space-x-3 px-5">
@@ -160,10 +171,30 @@ const SideNavBar = () => {
           </h4>
           </div>
       </div>
+      
       {
         sideNvList
       }
+     
     </div>
+        
+       
+      <div className='block md:hidden sticky top-0 '>
+      <button onClick={openDrawer} className=' px-2 shadow-sm drop-shadow-md'>
+        <AiOutlinePicRight className='text-3xl text-gray-900'/>
+      </button>
+      </div>
+      <Drawer open={openCategory} onClose={closeDrawer} className="">
+        <div className='flex justify-between items-center bg-[#ffd92e]  drop-shadow py-2 px-4'>
+          <h4 className='text-sm text-gray-900 uppercase font-semibold'>shop by category</h4>
+          <button onClick={()=>setOpenCategory(false)}>
+            <RxCross2 className='text-xl text-pink-500' />
+          </button>
+        </div>
+        {sideNvList}
+      </Drawer>
+    
+      
         </>
     );
 };

@@ -18,8 +18,8 @@ const TopHeader = () => {
   return (
     <>
       <div className="bg-blue-gray-50 text-gray-700">
-        <div className="container mx-auto flex items-center justify-between">
-          <div>
+        <div className="container mx-auto flex md:items-center md:justify-between justify-center  md:px-0">
+          <div className="hidden md:block">
             <h4 className="flex text-gray-700 space-x-3 items-center">
               <VscTag />
               <span> Welcome To Our Animal Toy Store</span>
@@ -28,16 +28,16 @@ const TopHeader = () => {
           <div className="py-2 px-1">
             <ul className="flex space-x-3 items-center">
               <Link to={"/whitelist"}>
-                <li>whiteList</li>
+                <li className="text-sm md:text-md">whiteList</li>
               </Link>
               <div className="h-[10px] min-h-[20px] w-px self-stretch bg-gradient-to-tr from-transparent via-blue-gray-900 to-transparent opacity-20 dark:opacity-100"></div>
               <li className="cursor-pointer ">
                 <Menu>
                   <MenuHandler>
-                    <button className="flex space-x-2 items-center"><span>Account</span> <BiChevronDown className="text-xl"/></button>
+                    <button className="flex space-x-2 items-center"><span className="text-sm md:text-md">Account</span> <BiChevronDown className="text-md md:text-xl"/></button>
                   </MenuHandler>
                   <MenuList>
-                    <Link to={'/'}>
+                    <Link to={'/login'}>
                     <MenuItem className="flex space-x-2 items-center"> <TbLogin2 className="text-xl"/> <span>Log-In</span> 
                     </MenuItem>
                     </Link>
@@ -66,7 +66,7 @@ const TopHeader = () => {
               <li className="cursor-pointer">
               <Menu>
                   <MenuHandler>
-                    <button className="flex space-x-2 items-center"><span>USD $</span> <BiChevronDown className="text-xl"/></button>
+                    <button className="flex space-x-2 items-center"><span className="text-sm md:text-md">USD $</span> <BiChevronDown className="text-md md:text-xl"/></button>
                   </MenuHandler>
                   <MenuList>
                   
@@ -82,7 +82,7 @@ const TopHeader = () => {
               <li className="cursor-pointer">
               <Menu>
                   <MenuHandler>
-                    <button className="flex space-x-2 items-center"><span>English</span> <BiChevronDown className="text-xl"/></button>
+                    <button className="flex space-x-2 items-center"><span className="text-sm md:text-md">English</span> <BiChevronDown className="text-md md:text-xl"/></button>
                   </MenuHandler>
                   <MenuList>
                   
