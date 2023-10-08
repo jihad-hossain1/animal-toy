@@ -1,8 +1,9 @@
-export const saveUser = user => {
+export const saveUser = (user,phone) => {
     const currentUser = {
         email: user?.email,
         name: user?.displayName,
-        image: user?.photoURL
+        image: user?.photoURL,
+        phone: phone
 
     }
 

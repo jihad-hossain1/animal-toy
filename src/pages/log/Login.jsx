@@ -11,24 +11,52 @@ import {
   TabsBody,
   Tab,
   TabPanel,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
 } from "@material-tailwind/react";
 import { BanknotesIcon, LockClosedIcon } from "@heroicons/react/24/solid";
 import { FcGoogle, FcKey } from "react-icons/fc";
+import { Icon } from "react-icons-kit";
+import { eyeOff } from "react-icons-kit/feather/eyeOff";
+import { eye } from "react-icons-kit/feather/eye";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../authentication/AuthProvider";
+import { useCountries } from "use-react-countries";
 const img_hosting_token = import.meta.env.VITE_IMGBB;
+// import { Icon } from 'react-icons-kit'
 
 export const Login = () => {
+  //login card
   const [type, setType] = useState("card");
+  //phone number input country wise
+  const { countries } = useCountries();
+  const [country, setCountry] = useState(0);
+  const { name, flags, countryCallingCode } = countries[country];
+  // password show icons
+  const [isPassword, setIsPassword] = useState("");
+  const [typeOfPassword, setTypeOfPassword] = useState("password");
+  const [iconEye, setIconEye] = useState(eyeOff);
+  const handlePasswordShowToggle = () => {
+    if (typeOfPassword === "password") {
+      setIconEye(eye);
+      setTypeOfPassword("text");
+    } else {
+      setIconEye(eyeOff);
+      setTypeOfPassword("password");
+    }
+  };
+  //login main section
   const { signInAc, signInWithGoogle, createUser, updateUserProfile } =
     useContext(AuthContext);
+  // path declartion
   const navigate = useNavigate();
   const location = useLocation();
-
   const from = location.state?.from?.pathname || "/";
-
+  // sign-in section function
   const handleSubmitsLogIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -38,10 +66,11 @@ export const Login = () => {
       const user = result.user;
       if (user) {
         toast.success("login successfull");
+        navigate(from, { replace: true });
       }
     });
   };
-
+  // google login section
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
@@ -50,19 +79,23 @@ export const Login = () => {
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
         toast.error(`${error}`);
       });
   };
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+
+  // register section
   const handleSubmitRegister = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     const name = form.name.value;
-    const confirm = form.confirm.value;
-
+    const phoneNumber = form.phoneNumber.value;
+    const cpassword = form.cpassword.value;
+    
+    
     const image = form.image.files[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -90,6 +123,7 @@ export const Login = () => {
           });
       });
   };
+
   return (
     <div className="bg-pink-50 min-h-screen px-2">
       <Toaster />
@@ -158,15 +192,29 @@ export const Login = () => {
                             variant="outlined"
                             name="email"
                           />
-                          <Input
-                            required
-                            type="password"
-                            color="pink"
-                            label="Password"
-                            variant="outlined"
-                            name="password"
-                          />
-                          <Button color="amber" size="lg" variant="gradient">
+                          <div className="flex">
+                            <Input
+                              required
+                              type={typeOfPassword}
+                              color="pink"
+                              // value={isPassword}
+                              label="Password"
+                              variant="outlined"
+                              name="password"
+                              // onChange={(e) => setIsPassword(e.target.value)}
+                            />
+                            <span
+                              class="flex justify-around items-center cursor-pointer"
+                              onClick={handlePasswordShowToggle}
+                            >
+                              <Icon
+                                class="absolute mr-10"
+                                icon={iconEye}
+                                size={16}
+                              />
+                            </span>
+                          </div>
+                          <Button type="submit" color="amber" size="lg" variant="gradient">
                             Log In
                           </Button>
                           <Typography
@@ -207,11 +255,73 @@ export const Login = () => {
                           <Input
                             type="text"
                             color="pink"
-                            label="Text Here"
+                            label="Your name"
                             variant="outlined"
                             name="name"
                             required
                           />
+                          <div className="relative flex w-full max-w-[24rem]">
+                            <Menu placement="bottom-start">
+                              <MenuHandler>
+                                <Button
+                                  ripple={false}
+                                  variant="text"
+                                  color="blue-gray"
+                                  className="flex h-10 items-center gap-2 rounded-r-none border border-r-0 border-blue-gray-200 bg-blue-gray-500/10 pl-3"
+                                >
+                                  <img
+                                    src={flags.svg}
+                                    alt={name}
+                                    className="h-4 w-4 rounded-full object-cover"
+                                  />
+                                  {countryCallingCode}
+                                </Button>
+                              </MenuHandler>
+                              <MenuList className="max-h-[20rem] max-w-[18rem]">
+                                {countries.map(
+                                  (
+                                    { name, flags, countryCallingCode },
+                                    index
+                                  ) => {
+                                    return (
+                                      <MenuItem
+                                        key={name}
+                                        value={name}
+                                        className="flex items-center gap-2"
+                                        onClick={() => setCountry(index)}
+                                      >
+                                        <img
+                                          src={flags.svg}
+                                          alt={name}
+                                          className="h-5 w-5 rounded-full object-cover"
+                                        />
+                                        {name}{" "}
+                                        <span className="ml-auto">
+                                          {countryCallingCode}
+                                        </span>
+                                      </MenuItem>
+                                    );
+                                  }
+                                )}
+                              </MenuList>
+                            </Menu>
+                            <Input
+                            color="pink"
+                            variant="outlined"
+                            // label="Mobile Number"
+                              type="tel"
+                              name="phoneNumber"
+                              placeholder="Mobile Number"
+                              className="rounded-l-none !border-t-blue-gray-200 focus:!border-t-pink-500"
+                              labelProps={{
+                                className:
+                                  "before:content-none after:content-none",
+                              }}
+                              containerProps={{
+                                className: "min-w-0",
+                              }}
+                            />
+                          </div>
                           <Input
                             type="email"
                             color="pink"
@@ -220,21 +330,37 @@ export const Login = () => {
                             name="email"
                             required
                           />
+                          <div className="flex">
+                            <Input
+                              required
+                              type={typeOfPassword}
+                              color="pink"
+                              value={isPassword}
+                              label="Password"
+                              variant="outlined"
+                              name="password"
+                              onChange={(e) => setIsPassword(e.target.value)}
+                            />
+                            <span
+                              class="flex justify-around items-center cursor-pointer"
+                              onClick={handlePasswordShowToggle}
+                            >
+                              <Icon
+                                class="absolute mr-10"
+                                icon={iconEye}
+                                size={16}
+                              />
+                            </span>
+                          </div>
                           <Input
-                            type="password"
-                            color="pink"
-                            label="password"
-                            variant="outlined"
-                            name="password"
-                            required
-                          />
-                          <Input
-                            type="password"
+                            type={typeOfPassword}
                             color="pink"
                             label="confirm password"
                             variant="outlined"
                             name="cpassword"
                             required
+                            // value={isPassword}
+                            // onChange={(e)=>setIsPassword(e.target.value)}
                           />
                           <Input
                             required
@@ -244,7 +370,7 @@ export const Login = () => {
                             label="Upload photo"
                           />
 
-                          <Button color="amber" size="lg" variant="gradient">
+                          <Button type="submit" color="amber" size="lg" variant="gradient">
                             Register
                           </Button>
                           <Typography
