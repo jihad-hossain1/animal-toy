@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { VscTag } from "react-icons/vsc";
 import { IoLogoUsd } from "react-icons/io";
@@ -13,8 +13,11 @@ import {
   MenuList,
   MenuItem,
 } from "@material-tailwind/react";
+import { AuthContext } from "../../../authentication/AuthProvider";
 
 const TopHeader = () => {
+  const {user,logOut} = useContext(AuthContext)
+  // console.log(user);
   return (
     <>
       <div className="bg-blue-gray-50 text-gray-700">
@@ -37,15 +40,11 @@ const TopHeader = () => {
                     <button className="flex space-x-2 items-center"><span className="text-sm md:text-md">Account</span> <BiChevronDown className="text-md md:text-xl"/></button>
                   </MenuHandler>
                   <MenuList>
-                    <Link to={'/login'}>
-                    <MenuItem className="flex space-x-2 items-center"> <TbLogin2 className="text-xl"/> <span>Log-In</span> 
-                    </MenuItem>
-                    </Link>
-                    <Link to={'/'}>
-                    <MenuItem className="flex space-x-2 items-center"> <BiLogOut className="text-xl"/> <span>Log-Out</span> 
-                    </MenuItem>
-                    </Link>
-                    <Link to={'/'}>
+                    
+                   
+                    {
+                      user ? <>
+                      <Link to={'/'}>
                     <MenuItem className="flex space-x-2 items-center"> <LuLayoutDashboard className="text-xl"/> <span>Dashboard</span> 
                     </MenuItem>
                     </Link>
@@ -56,7 +55,19 @@ const TopHeader = () => {
                     <Link to={'/'}>
                     <MenuItem className="flex space-x-2 items-center"> <TbHelpTriangleFilled className="text-xl"/> <span>Help</span> 
                     </MenuItem>
+                    <MenuItem onClick={logOut} className="flex space-x-2 items-center"> <BiLogOut className="text-xl"/> <span>Log-Out</span> 
+                    </MenuItem>
                     </Link>
+                      </> : <>
+                      <Link to={'/login'}>
+                    <MenuItem className="flex space-x-2 items-center"> <TbLogin2 className="text-xl"/> <span>Log-In</span> 
+                    </MenuItem>
+                    </Link>
+                       </>
+                    }
+                    <MenuItem className="flex space-x-2 items-center"> <TbHelpTriangleFilled className="text-xl"/> <span>Help</span> 
+                    </MenuItem>
+                   
                     
                   </MenuList>
                 </Menu>
