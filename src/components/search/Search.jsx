@@ -7,8 +7,9 @@ const Search = () => {
         <>
             <div className=" relative flex lg:w-[24rem] ">
           <Input
+          color='pink'
             type="text"
-            label="Search Products"
+            label="Search Toys"
             value={searchProduct}
             onChange={({ target }) => setSearchProduct(target.value)}
             className="pr-20"

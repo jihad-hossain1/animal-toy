@@ -16,7 +16,7 @@ import {
   MenuList,
   MenuItem,
 } from "@material-tailwind/react";
-import { BanknotesIcon, LockClosedIcon } from "@heroicons/react/24/solid";
+import {  LockClosedIcon } from "@heroicons/react/24/solid";
 import { FcGoogle, FcKey } from "react-icons/fc";
 import { Icon } from "react-icons-kit";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";

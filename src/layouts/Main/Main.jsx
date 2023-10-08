@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import TopHeader from "../../components/header/topHeader/TopHeader";
 import LogoWithSearchNav from "../../components/LogoWithSearchNav/LogoWithSearchNav";
 import DesktopNav from "../../components/desktopNav/DesktopNav";
@@ -7,6 +7,7 @@ import DesktopNav from "../../components/desktopNav/DesktopNav";
 import SideNavBar from "../../components/sideNavBar/SideNavBar";
 import Footer from "../../components/footer/Footer";
 import MobileNav from "../../components/mobileNav/MobileNav";
+
 const Main = () => {
   return (
     <div className="">
@@ -32,10 +33,12 @@ const Main = () => {
         <div className="hidden md:block ">
           <SideNavBar></SideNavBar>
         </div>
+        {/* main Outlet  */}
         <div className="md:ml-48 container mx-auto border px-2">
           <Outlet></Outlet>
         </div>
       </div>
+      {/* footer section  */}
       <Footer></Footer>
     </div>
   );

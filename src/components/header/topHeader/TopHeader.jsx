@@ -1,23 +1,22 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { VscTag } from "react-icons/vsc";
 import { IoLogoUsd } from "react-icons/io";
 import { PiCurrencyGbpBold } from "react-icons/pi";
-import { FaUserGear } from "react-icons/fa6";
-import { TbLogin2,TbHelpTriangleFilled } from "react-icons/tb";
+import { TbLogin2, TbHelpTriangleFilled } from "react-icons/tb";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { BiChevronDown,BiLogOut } from "react-icons/bi";
+import { BiChevronDown, BiLogOut } from "react-icons/bi";
 import {
   Menu,
   MenuHandler,
   MenuList,
   MenuItem,
+  Avatar,
 } from "@material-tailwind/react";
 import { AuthContext } from "../../../authentication/AuthProvider";
 
 const TopHeader = () => {
-  const {user,logOut} = useContext(AuthContext)
-  // console.log(user);
+  const { user, logOut } = useContext(AuthContext);
   return (
     <>
       <div className="bg-blue-gray-50 text-gray-700">
@@ -37,73 +36,103 @@ const TopHeader = () => {
               <li className="cursor-pointer ">
                 <Menu>
                   <MenuHandler>
-                    <button className="flex space-x-2 items-center"><span className="text-sm md:text-md">Account</span> <BiChevronDown className="text-md md:text-xl"/></button>
+                    <button className="flex space-x-2 items-center">
+                      <span className="text-sm md:text-md">
+                        {user?.displayName ? user?.displayName : "Account"}
+                      </span>{" "}
+                      <BiChevronDown className="text-md md:text-xl" />
+                    </button>
                   </MenuHandler>
                   <MenuList>
-                    
-                   
-                    {
-                      user ? <>
-                      <Link to={'/'}>
-                    <MenuItem className="flex space-x-2 items-center"> <LuLayoutDashboard className="text-xl"/> <span>Dashboard</span> 
+                    {user ? (
+                      <>
+                        <Link to={"/"}>
+                          <MenuItem className="flex space-x-2 items-center">
+                            {" "}
+                            <Avatar
+                              size="sm"
+                              alt="user photo"
+                              src={user?.photoURL ? user?.photoURL : 'https://i.ibb.co/R7B1dV8/cat4.png'}
+                              className="border border-yellow-500 shadow-xl shadow-green-900/20 ring-4 ring-pink-200/30 mr-2"
+                            />{" "}
+                            <span>Profile</span>
+                          </MenuItem>
+                        </Link>
+                        <Link to={"/"}>
+                          <MenuItem className="flex space-x-2 items-center">
+                            {" "}
+                            <LuLayoutDashboard className="text-xl" />{" "}
+                            <span>Dashboard</span>
+                          </MenuItem>
+                        </Link>
+                        <Link to={"/"}>
+                          <MenuItem className="flex space-x-2 items-center">
+                            {" "}
+                            <TbHelpTriangleFilled className="text-xl" />{" "}
+                            <span>Help</span>
+                          </MenuItem>
+                          <MenuItem
+                            onClick={logOut}
+                            className="flex space-x-2 items-center"
+                          >
+                            {" "}
+                            <BiLogOut className="text-xl" />{" "}
+                            <span>Log-Out</span>
+                          </MenuItem>
+                        </Link>
+                      </>
+                    ) : (
+                      <>
+                        <Link to={"/login"}>
+                          <MenuItem className="flex space-x-2 items-center">
+                            {" "}
+                            <TbLogin2 className="text-xl" /> <span>Log-In</span>
+                          </MenuItem>
+                        </Link>
+                      </>
+                    )}
+                    <MenuItem className="flex space-x-2 items-center">
+                      {" "}
+                      <TbHelpTriangleFilled className="text-xl" />{" "}
+                      <span>Help</span>
                     </MenuItem>
-                    </Link>
-                    <Link to={'/'}>
-                    <MenuItem className="flex space-x-2 items-center"> <FaUserGear className="text-xl"/> <span>Profile</span> 
-                    </MenuItem>
-                    </Link>
-                    <Link to={'/'}>
-                    <MenuItem className="flex space-x-2 items-center"> <TbHelpTriangleFilled className="text-xl"/> <span>Help</span> 
-                    </MenuItem>
-                    <MenuItem onClick={logOut} className="flex space-x-2 items-center"> <BiLogOut className="text-xl"/> <span>Log-Out</span> 
-                    </MenuItem>
-                    </Link>
-                      </> : <>
-                      <Link to={'/login'}>
-                    <MenuItem className="flex space-x-2 items-center"> <TbLogin2 className="text-xl"/> <span>Log-In</span> 
-                    </MenuItem>
-                    </Link>
-                       </>
-                    }
-                    <MenuItem className="flex space-x-2 items-center"> <TbHelpTriangleFilled className="text-xl"/> <span>Help</span> 
-                    </MenuItem>
-                   
-                    
                   </MenuList>
                 </Menu>
-                
               </li>
               <div className="h-[10px] min-h-[20px] w-px self-stretch bg-gradient-to-tr from-transparent via-blue-gray-900 to-transparent opacity-20 dark:opacity-100"></div>
               <li className="cursor-pointer">
-              <Menu>
+                <Menu>
                   <MenuHandler>
-                    <button className="flex space-x-2 items-center"><span className="text-sm md:text-md">USD $</span> <BiChevronDown className="text-md md:text-xl"/></button>
+                    <button className="flex space-x-2 items-center">
+                      <span className="text-sm md:text-md">USD $</span>{" "}
+                      <BiChevronDown className="text-md md:text-xl" />
+                    </button>
                   </MenuHandler>
                   <MenuList>
-                  
-                    <MenuItem className="flex space-x-2 items-center"> <IoLogoUsd className="text-xl"/> <span>USD</span> 
+                    <MenuItem className="flex space-x-2 items-center">
+                      {" "}
+                      <IoLogoUsd className="text-xl" /> <span>USD</span>
                     </MenuItem>
-                    <MenuItem className="flex space-x-2 items-center"> <PiCurrencyGbpBold className="text-xl"/> <span>GBP</span> 
+                    <MenuItem className="flex space-x-2 items-center">
+                      {" "}
+                      <PiCurrencyGbpBold className="text-xl" /> <span>GBP</span>
                     </MenuItem>
-                    
                   </MenuList>
                 </Menu>
               </li>
               <div className="h-[10px] min-h-[20px] w-px self-stretch bg-gradient-to-tr from-transparent via-blue-gray-900 to-transparent opacity-20 dark:opacity-100"></div>
               <li className="cursor-pointer">
-              <Menu>
+                <Menu>
                   <MenuHandler>
-                    <button className="flex space-x-2 items-center"><span className="text-sm md:text-md">English</span> <BiChevronDown className="text-md md:text-xl"/></button>
+                    <button className="flex space-x-2 items-center">
+                      <span className="text-sm md:text-md">English</span>{" "}
+                      <BiChevronDown className="text-md md:text-xl" />
+                    </button>
                   </MenuHandler>
                   <MenuList>
-                  
-                    <MenuItem className="text-center"> English 
-                    </MenuItem>
-                    <MenuItem className="text-center"> العربية 
-                    </MenuItem>
-                    <MenuItem className="text-center"> Espenol 
-                    </MenuItem>
-                   
+                    <MenuItem className="text-center"> English</MenuItem>
+                    <MenuItem className="text-center"> العربية</MenuItem>
+                    <MenuItem className="text-center"> Espenol</MenuItem>
                   </MenuList>
                 </Menu>
               </li>
