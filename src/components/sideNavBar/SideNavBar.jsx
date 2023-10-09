@@ -26,9 +26,19 @@ import {TbArrowRoundaboutRight} from 'react-icons/tb'
 import {RiBearSmileLine} from 'react-icons/ri'
 import {RxCross2} from 'react-icons/rx'
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import { useLocation } from 'react-router-dom';
 
 
 const SideNavBar = () => {
+
+  const location = useLocation();
+  // console.log(location.pathname);
+  const sideFilterNav = location.pathname.includes('/alltoys') 
+  const nosideFilterNav = location.pathname.includes('/alltoys') 
+  // const homeTrandingNav = location.pathname.includes('') || location.pathname.includes('/')
+  // || location.pathname.includes('/alltoys') || location.pathname.includes('/contact') || location.pathname.includes('/tranding') 
+  
+
     const [open, setOpen] = useState(0);
     const [openCategory, setOpenCategory] = useState(false);
 
@@ -161,8 +171,8 @@ const SideNavBar = () => {
     )
     return (
         <>
-  
-        <div className="hidden md:block border h-[calc(100vh-2rem)] w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5 sticky top-0">
+  {/* h-[calc(100vh-2rem)] */}
+        <div className="hidden md:block   w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5 sticky top-0">
       <div className="mb-2">
       <div className="bg-[#ffd92e]  drop-shadow">
           <h4 className=" w-full uppercase font-semibold py-3 flex items-center  space-x-3 px-5">
@@ -175,8 +185,38 @@ const SideNavBar = () => {
       {
         sideNvList
       }
-     
+     {/* {noSideNav || <div className='hidden md:block   w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5  '>
+      <div className='h-[400px] bg-gray-500'>
+      sidenav on Tranding
+      </div>
+    </div>} */}
+     {sideFilterNav && <div className='hidden md:block   w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5  '>
+      <div className='h-[400px] bg-blue-gray-50 p2 pt-3'>
+      <h4 className='uppercase  font-semibold text-center'>
+      Fileter on Toys
+      </h4>
+      </div>
+    </div>}
+    {nosideFilterNav || <div className='mt-4 hidden md:block   w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5  '>
+      <div className='min-h-[100px] bg-gray-50 p-2'>
+      <h4 className='uppercase text-xl font-semibold'>
+      DEAL OF THE DAY
+      </h4>
+      </div>
+      <div className='min-h-[100px] bg-gray-50 p-2'>
+      new arrival
+      </div>
+      <div className='min-h-[100px] bg-gray-50 p-2'>
+      What's our client says
+      </div>
+      <div className='min-h-[100px] bg-gray-50 p-2'>
+      Newsletter
+      </div>
+    </div> }
+    
     </div>
+    
+    
         
        
       <div className='block md:hidden sticky top-0 '>

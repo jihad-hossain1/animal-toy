@@ -7,31 +7,31 @@ export const navList = (
   <>
   <NavLink
           to={`/`}
-          className={({ isActive }) => (isActive ? "text-pink-400 font-semibold" : "text-white font-semibold hover:text-pink-500")}
+          className={({ isActive }) => (isActive ? "text-pink-400 font-semibold" : "text-black md:text-white font-semibold hover:text-pink-500")}
         >
           <li className="uppercase text-sm">Home</li>
         </NavLink>
         <NavLink
           to={`/alltoys`}
-          className={({ isActive }) => (isActive ? "text-pink-400 font-semibold" : "text-white font-semibold hover:text-pink-500")}
+          className={({ isActive }) => (isActive ? "text-pink-400 font-semibold" : "text-black md:text-white font-semibold hover:text-pink-500")}
         >
           <li className="uppercase text-sm">All Toys</li>
         </NavLink>
         <NavLink
           to={`/tranding`}
-          className={({ isActive }) => (isActive ? "text-pink-400 font-semibold" : "text-white font-semibold hover:text-pink-500")}
+          className={({ isActive }) => (isActive ? "text-pink-400 font-semibold" : "text-black md:text-white font-semibold hover:text-pink-500")}
         >
           <li className="uppercase text-sm">Tranding</li>
         </NavLink>
         <NavLink
           to={`/contact`}
-          className={({ isActive }) => (isActive ? "text-pink-400 font-semibold" : "text-white font-semibold hover:text-pink-500")}
+          className={({ isActive }) => (isActive ? "text-pink-400 font-semibold" : "text-black md:text-white font-semibold hover:text-pink-500")}
         >
           <li className="uppercase text-sm">Contact</li>
         </NavLink>
         <NavLink
           to={`/blogs`}
-          className={({ isActive }) => (isActive ? "text-pink-400 font-semibold" : "text-white font-semibold hover:text-pink-500")}
+          className={({ isActive }) => (isActive ? "text-pink-400 font-semibold" : "text-black md:text-white font-semibold hover:text-pink-500")}
         >
           <li className="uppercase text-sm">Blogs</li>
         </NavLink>
@@ -39,40 +39,6 @@ export const navList = (
 )
 const DesktopNav = () => {
 
-  // const navList = (
-  //   <>
-  //   <NavLink
-  //           to={`/`}
-  //           className={({ isActive }) => (isActive ? "text-pink-400 font-semibold" : "text-white font-semibold hover:text-pink-500")}
-  //         >
-  //           <li className="uppercase text-sm">Home</li>
-  //         </NavLink>
-  //         <NavLink
-  //           to={`/alltoys`}
-  //           className={({ isActive }) => (isActive ? "text-pink-400 font-semibold" : "text-white font-semibold hover:text-pink-500")}
-  //         >
-  //           <li className="uppercase text-sm">All Toys</li>
-  //         </NavLink>
-  //         <NavLink
-  //           to={`/tranding`}
-  //           className={({ isActive }) => (isActive ? "text-pink-400 font-semibold" : "text-white font-semibold hover:text-pink-500")}
-  //         >
-  //           <li className="uppercase text-sm">Tranding</li>
-  //         </NavLink>
-  //         <NavLink
-  //           to={`/contact`}
-  //           className={({ isActive }) => (isActive ? "text-pink-400 font-semibold" : "text-white font-semibold hover:text-pink-500")}
-  //         >
-  //           <li className="uppercase text-sm">Contact</li>
-  //         </NavLink>
-  //         <NavLink
-  //           to={`/blogs`}
-  //           className={({ isActive }) => (isActive ? "text-pink-400 font-semibold" : "text-white font-semibold hover:text-pink-500")}
-  //         >
-  //           <li className="uppercase text-sm">Blogs</li>
-  //         </NavLink>
-  //   </>
-  // )
   return (
     <>
     <div className="md:bg-gray-900">
@@ -85,7 +51,6 @@ const DesktopNav = () => {
       </div>
     </div>
     </div>
-    {/* Mobile navbar  */}
     
     </>
   );

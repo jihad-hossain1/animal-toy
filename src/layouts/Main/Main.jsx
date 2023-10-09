@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import TopHeader from "../../components/header/topHeader/TopHeader";
 import LogoWithSearchNav from "../../components/LogoWithSearchNav/LogoWithSearchNav";
 import DesktopNav from "../../components/desktopNav/DesktopNav";
@@ -9,6 +9,7 @@ import Footer from "../../components/footer/Footer";
 import MobileNav from "../../components/mobileNav/MobileNav";
 
 const Main = () => {
+
   return (
     <div className="">
       <header>
@@ -31,11 +32,11 @@ const Main = () => {
       </header>
       <div className="container mx-auto grid md:flex md:space-x-2">
         <div className="hidden md:block ">
-          <SideNavBar></SideNavBar>
+        <SideNavBar></SideNavBar>
         </div>
         {/* main Outlet  */}
         <div className="md:ml-48 container mx-auto border px-2">
-          <Outlet></Outlet>
+        <Outlet></Outlet>
         </div>
       </div>
       {/* footer section  */}

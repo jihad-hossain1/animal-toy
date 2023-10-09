@@ -25,7 +25,7 @@ import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../authentication/AuthProvider";
-import { useCountries } from "use-react-countries";
+// import { useCountries } from "use-react-countries";
 const img_hosting_token = import.meta.env.VITE_IMGBB;
 // import { Icon } from 'react-icons-kit'
 
@@ -33,9 +33,9 @@ export const Login = () => {
   //login card
   const [type, setType] = useState("card");
   //phone number input country wise
-  const { countries } = useCountries();
-  const [country, setCountry] = useState(0);
-  const { name, flags, countryCallingCode } = countries[country];
+  // const { countries } = useCountries();
+  // const [country, setCountry] = useState(0);
+  // const { name, flags, countryCallingCode } = countries[country];
   // password show icons
   const [isPassword, setIsPassword] = useState("");
   const [typeOfPassword, setTypeOfPassword] = useState("password");
@@ -92,7 +92,7 @@ export const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     const name = form.name.value;
-    const phoneNumber = form.phoneNumber.value;
+    // const phoneNumber = form.phoneNumber.value;
     const cpassword = form.cpassword.value;
     
     
@@ -260,7 +260,7 @@ export const Login = () => {
                             name="name"
                             required
                           />
-                          <div className="relative flex w-full max-w-[24rem]">
+                          {/* <div className="relative flex w-full max-w-[24rem]">
                             <Menu placement="bottom-start">
                               <MenuHandler>
                                 <Button
@@ -321,7 +321,7 @@ export const Login = () => {
                                 className: "min-w-0",
                               }}
                             />
-                          </div>
+                          </div> */}
                           <Input
                             type="email"
                             color="pink"

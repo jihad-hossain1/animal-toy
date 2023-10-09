@@ -22,8 +22,8 @@ const MobileNav = () => {
           <AiOutlineAlignRight className="text-3xl" />
         </button>
       </MenuHandler>
-      <MenuList className='bg-blue-gray-900'>
-       <ul className='flex flex-col items-center space-y-3 py-3'>
+      <MenuList className='bg-blue-gray-50 '>
+       <ul className='flex flex-col items-center space-y-3 py-3 '>
        {navList}
        </ul>
       </MenuList>
