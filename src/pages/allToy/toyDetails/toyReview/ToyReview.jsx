@@ -1,8 +1,10 @@
-import { TabPanel } from "@material-tailwind/react";
+import { Button, Input, TabPanel, Textarea } from "@material-tailwind/react";
 import { useReview } from "../../../../hooks/useReview";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../../authentication/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import SingleReview from "./SingleReview";
+import { Rate } from "antd";
 
 const ToyReview = ({ singleToy }) => {
   const {user} = useContext(AuthContext)
@@ -34,7 +36,7 @@ const ToyReview = ({ singleToy }) => {
           userNaem: user?.displayName,
           userPhoto: user?.photoURL,
           reviewCount: parseFloat(value),
-          reviewID: course?._id,
+          reviewID: singleToy?._id,
           timeDate: reviewTimes 
       };
 // console.log(info)
@@ -63,15 +65,17 @@ const ToyReview = ({ singleToy }) => {
     }
   };
 
+  const review = reviews.filter(item=> item.reviewID == singleToy?._id)
+
   return (
     <TabPanel value={"review"} >
       <Toaster />
       <div className="min-h-[200px]">
-        {/* comment or review section  */}
+        {/* review or review section  */}
         <hr className='py-4' />
         <div className=''>
           <h4 className='text-blue-gray-600 font-semibold px-2'>
-            Leave a comments..
+            Leave a reviews..
           </h4>
           <form
             onSubmit={handleReview}
@@ -79,31 +83,31 @@ const ToyReview = ({ singleToy }) => {
             className='max-w-[450px] px-2 py-2'
           >
            <span>
-           <Rate tooltips={desc} onChange={setValue} allowHalf className="mb-2" defaultValue={course?.instructorRating} />
+           <Rate tooltips={desc} onChange={setValue} allowHalf className="mb-2" defaultValue={singleToy?.rating} />
             {value ? <span className="ant-rate-text">{desc[value - 1]}</span> : ''}
            </span>
             <div className='mb-3'>
               <Input
                 required
-                name='commentUserName'
+                name='reviewUserName'
                 label='Your Name'
-                color='teal'
+                color='pink'
               ></Input>
             </div>
             <Textarea
               required
-              name='commentUserComment'
-              label='Leave a comments'
-              color='teal'
+              name='reviewUserreview'
+              label='Leave a reviews'
+              color='pink'
             ></Textarea>
-            <Button label='' color='teal' type='submit'>
+            <Button label='' color='amber' type='submit'>
               submit
             </Button>
           </form>
         </div>
         <hr className='py-4' />
-        <div className={`${comment.length > 0 ? 'border border-cyan-50 p-4 rounded text-blue-gray-700 grid gap-3' : 'text-blue-gray-600'}`}>
-            {comment.length > 0 ? comment.map(item=><SingleComment item={item} key={item._id} refetch={refetch}></SingleComment>) : 'Ops No comments here..' }
+        <div className={`${review.length > 0 ? 'border border-cyan-50 p-4 rounded text-blue-gray-700 grid gap-3' : 'text-blue-gray-600'}`}>
+            {review.length > 0 ? review.map(item=><SingleReview item={item} key={item._id} refetch={refetch}></SingleReview>) : 'Ops No reviews here..' }
         </div>
       </div>
     </TabPanel>

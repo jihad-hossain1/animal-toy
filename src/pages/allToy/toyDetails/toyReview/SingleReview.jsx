@@ -3,10 +3,11 @@ import { Button, Dialog, IconButton, Input, Textarea, Tooltip } from "@material-
 import React, { useContext, useRef, useState } from "react";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { PencilIcon } from "@heroicons/react/24/solid";
-import { AuthContext } from "../../provider/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
 import toast, { Toaster } from "react-hot-toast";
+import { AuthContext } from "../../../../authentication/AuthProvider";
+
 
 
 const SingleReview = ({ item, refetch }) => {
@@ -15,9 +16,9 @@ const SingleReview = ({ item, refetch }) => {
   const [updateData, setUpdateData] = useState(null);
   const { user } = useContext(AuthContext);
   const {
-    comment,
-    commentCount,
-    commentUser,
+    review,
+    reviewCount,
+    reviewUser,
     userEmail,
     userNaem,
     userPhoto,
@@ -25,7 +26,7 @@ const SingleReview = ({ item, refetch }) => {
     timeDate,
   } = item;
 
-  const handleDeleteComment = (commentItem) => {
+  const handleDeletereview = (reviewItem) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -38,13 +39,13 @@ const SingleReview = ({ item, refetch }) => {
       if (result.isConfirmed) {
         axios
           .delete(
-            `${import.meta.env.VITE_BASE_URL}/comments/${commentItem?._id}`
+            `${import.meta.env.VITE_BASE_URL}/reviews/${reviewItem?._id}`
           )
           .then((res) => {
             if (res.data.deletedCount > 0) {
               refetch();
               // Swal.fire("Deleted!", "Your file has been deleted.", "success");
-              toast.success("your comment delete successfull");
+              toast.success("your review delete successfull");
             }
           });
       }
@@ -63,13 +64,13 @@ const SingleReview = ({ item, refetch }) => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const commentUserComment = form.commentUserComment.value
+    const reviewUserreview = form.reviewUserreview.value
     const updateinfo = {
-      comment: commentUserComment
+      review: reviewUserreview
     };
     // console.log(updateinfo)
     const res = await fetch(
-      `${import.meta.env.VITE_BASE_URL}/comments/${updateData._id}`,
+      `${import.meta.env.VITE_BASE_URL}/reviews/${updateData._id}`,
       {
         method: "PUT",
         headers: {
@@ -81,7 +82,7 @@ const SingleReview = ({ item, refetch }) => {
     const data = await res.json();
 
     if (data.modifiedCount == 1) {
-      toast.success(` comments updated succesfull`);
+      toast.success(` reviews updated succesfull`);
       // console.log(data.modifiedCount);
       closeModal();
       refetch();
@@ -95,19 +96,19 @@ const SingleReview = ({ item, refetch }) => {
       <div className="max-w-2xl px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
         <div className="flex items-center justify-between">
           <span className="text-sm font-light text-blue-gray-600 dark:text-gray-400 ">
-            {timeDate?.commentDate || (
+            {timeDate?.reviewDate || (
               <span className="text-xs text-blue-gray-500">!ops error</span>
             )}
           </span>
           <span className="text-sm font-light text-blue-gray-600 dark:text-gray-400 ">
-            {timeDate?.commentTime || (
+            {timeDate?.reviewTime || (
               <span className="text-xs text-blue-gray-500">!ops error</span>
             )}
           </span>
         </div>
 
         <div className="mt-2">
-          <p className="mt-2 text-gray-600 dark:text-gray-300">{comment}</p>
+          <p className="mt-2 text-gray-600 dark:text-gray-300">{review}</p>
         </div>
 
         <div
@@ -120,16 +121,16 @@ const SingleReview = ({ item, refetch }) => {
           <div
             className={`${user?.email == item.userEmail ? "block" : "hidden"}`}
           >
-            {/* TODO --> comment Update & delete  */}
-            <Tooltip content="Edit Comment">
+            {/* TODO --> review Update & delete  */}
+            <Tooltip content="Edit review">
               <IconButton onClick={()=>openModal(item)} variant="text">
                 <PencilIcon className="h-4 w-4" />
               </IconButton>
             </Tooltip>
 
-           <Tooltip content="dlete Comment">
+           <Tooltip content="dlete review">
            <IconButton
-                onClick={() => handleDeleteComment(item)}
+                onClick={() => handleDeletereview(item)}
                 variant="text"
               >
                 <TrashIcon className="h-4 w-4 text-pink-800" />
@@ -138,7 +139,7 @@ const SingleReview = ({ item, refetch }) => {
            </Tooltip>
               
             
-            {/* TODO --> comment Update & delete  */}
+            {/* TODO --> review Update & delete  */}
           </div>
 
           <div className="flex items-center">
@@ -170,7 +171,7 @@ const SingleReview = ({ item, refetch }) => {
         </div>
           <form ref={formRef} action="" onSubmit={handleUpdate}>
           <h4 className='text-2xl font-semibold text-center text-blue-gray-700 mb-5'>
-              Update Your Comment
+              Update Your review
             </h4>
               <div className='mb-4'>
                 <Input
@@ -179,9 +180,9 @@ const SingleReview = ({ item, refetch }) => {
                   type='text'
                   className='w-full'
                   color='teal'
-                  name='commentUserName'
+                  name='reviewUserName'
                   label='Your Name'
-                  defaultValue={updateData?.commentUser}
+                  defaultValue={updateData?.reviewUser}
                 />
               </div>
               <div className='mb-4'>
@@ -190,9 +191,9 @@ const SingleReview = ({ item, refetch }) => {
                   type='text'
                   className='w-full'
                   color='teal'
-                  name='commentUserComment'
-                  label='Your Comment '
-                  defaultValue={updateData?.comment}
+                  name='reviewUserreview'
+                  label='Your review '
+                  defaultValue={updateData?.review}
                 />
               </div>
               <div>
@@ -204,7 +205,7 @@ const SingleReview = ({ item, refetch }) => {
                   variant='outlined'
                 >
                   {" "}
-                  Update Comment{" "}
+                  Update review{" "}
                 </Button>
               </div>
           </form>
