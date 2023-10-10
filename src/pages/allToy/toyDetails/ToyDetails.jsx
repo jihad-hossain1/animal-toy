@@ -18,6 +18,7 @@ import {
 import ToyReview from "./toyReview/ToyReview";
 
 import { Link } from "react-scroll";
+import UserCart from "../../profile/cart/UserCart";
 
 
 
@@ -182,14 +183,8 @@ const ToyDetails = () => {
             </ButtonGroup>
           </div>
           {/* add cart button  */}
-          <div className="space-x-4 mt-4 mb-4">
-            <button className="bg-[#f0c507] px-4 py-2 md:px-6 md:py-3 rounded text-black text-xs md:text-[14px] inline-block uppercase hover:bg-[#fc82bd] hover:text-white transition-all duration-500">
-              add to cart
-            </button>
-            <button className="bg-[#fc82bd] px-4 py-2 md:px-6 md:py-3 rounded text-black text-xs md:text-[14px] inline-block uppercase hover:bg-[#f0c507] hover:text-white transition-all duration-500">
-              Buy it now
-            </button>
-          </div>
+          <UserCart singleToy={singleToy} />
+          
           {/* delivary system  */}
           <div className="rounded-md border border-blue-gray-100 p-2 md:p-4 grid grid-cols-2 gap-2">
             {singleToy?.offers.map(({ title, about, icon }, index) => (
@@ -209,6 +204,7 @@ const ToyDetails = () => {
               </div>
             ))}
           </div>
+          
         </div>
       </div>
       {/* description & review & condition by tab section  */}

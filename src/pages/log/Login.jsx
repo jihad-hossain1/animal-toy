@@ -25,6 +25,7 @@ import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../../authentication/AuthProvider";
+import { saveUser } from "../../authentication/auth";
 // import { useCountries } from "use-react-countries";
 const img_hosting_token = import.meta.env.VITE_IMGBB;
 // import { Icon } from 'react-icons-kit'
@@ -74,7 +75,7 @@ export const Login = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        // saveUser(result.user);
+        saveUser(result.user);
         toast.success("login success");
         navigate(from, { replace: true });
       })
@@ -113,6 +114,7 @@ export const Login = () => {
         createUser(email, password)
           .then((result) => {
             updateUserProfile(name, imgUrl).then(() => {
+              saveUser(result.user);
               toast.success("user account successfull");
             });
             navigate(from, { replace: true });
