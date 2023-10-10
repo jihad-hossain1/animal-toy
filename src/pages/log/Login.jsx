@@ -125,7 +125,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="bg-pink-50 min-h-screen px-2">
+    <div className="bg-pink-50 min-h-screen px-2 py-4">
       <Toaster />
       <div className="min-h-screen  flex flex-col justify-center relative overflow-hidden ">
         <div className="max-w-7xl mx-auto">
@@ -157,7 +157,8 @@ export const Login = () => {
                       </Tab>
                     </TabsHeader>
                     <TabsBody
-                      className="!overflow-x-hidden !overflow-y-visible"
+                    //  className="!overflow-x-hidden !overflow-y-visible"
+                      className="!overflow-x-hidden !overflow-y-hidden"
                       animate={{
                         initial: {
                           x: type === "card" ? 400 : -400,

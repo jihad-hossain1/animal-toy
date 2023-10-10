@@ -7,6 +7,7 @@ import Tranding from "../pages/tranding/Tranding";
 import Contact from "../pages/contact/Contact";
 import Blogs from "../pages/blogs/Blogs";
 import { Login } from "../pages/log/Login";
+import ToyDetails from "../pages/allToy/toyDetails/ToyDetails";
 
 export const router = createBrowserRouter([
     {
@@ -20,6 +21,12 @@ export const router = createBrowserRouter([
             {
                 path: '/alltoys',
                 element: <AllToy></AllToy>
+            }
+           ,
+            {
+                path: '/singletoy/:id',
+                element: <ToyDetails></ToyDetails>,
+                loader: async({ params }) => await fetch(`${import.meta.env.VITE_BASE_URL}/toys/${params.id}`)
             }
            ,
             {

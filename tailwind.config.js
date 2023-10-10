@@ -4,6 +4,11 @@
 
 
 const withMT = require("@material-tailwind/react/utils/withMT");
+// const fontFamily = {
+//   sans: ["Open Sans", "sans-serif"],
+//   poppin: ["Poppins", "sans-serif"],
+//   kanit: ["Kanit", "sans-serif"],
+// };
  
 module.exports = withMT({
   content: [
@@ -13,7 +18,11 @@ module.exports = withMT({
     "path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    fontFamily: {
+      sans: ['Open Sans', 'sans-serif'],
+      poppin: ['Poppins', 'sans-serif'],
+      kanit: ['Kanit', 'sans-serif'],
+    },
   },
   darkMode: ["class", '[data-theme="dark"]'],
   plugins: [],
