@@ -4,11 +4,7 @@
 
 
 const withMT = require("@material-tailwind/react/utils/withMT");
-// const fontFamily = {
-//   sans: ["Open Sans", "sans-serif"],
-//   poppin: ["Poppins", "sans-serif"],
-//   kanit: ["Kanit", "sans-serif"],
-// };
+
  
 module.exports = withMT({
   content: [
@@ -22,6 +18,7 @@ module.exports = withMT({
       sans: ['Open Sans', 'sans-serif'],
       poppin: ['Poppins', 'sans-serif'],
       kanit: ['Kanit', 'sans-serif'],
+      balooPaaji: ['Baloo Paaji 2', 'sans-serif']
     },
   },
   darkMode: ["class", '[data-theme="dark"]'],

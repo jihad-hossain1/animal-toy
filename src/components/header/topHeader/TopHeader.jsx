@@ -66,11 +66,7 @@ const TopHeader = () => {
                           </MenuItem>
                         </Link>
                         <Link to={"/"}>
-                          <MenuItem className="flex space-x-2 items-center">
-                            {" "}
-                            <TbHelpTriangleFilled className="text-xl" />{" "}
-                            <span>Help</span>
-                          </MenuItem>
+                          
                           <MenuItem
                             onClick={logOut}
                             className="flex space-x-2 items-center"

@@ -20,7 +20,7 @@ const data =[
 ]
 const Offer = () => {
     return (
-        <div className='grid grid-cols-1 md:grid-cols-4 gap-3'>
+        <div className='flex flex-col justify-center items-center sm:grid sm:grid-cols-2 md:grid-cols-4 gap-3'>
             {
                 data.map((item,index)=><Link to={item?.link} key={index}>
                 <div  className='bg-white rounded-md p-2'>

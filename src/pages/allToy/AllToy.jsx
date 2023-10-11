@@ -32,11 +32,11 @@ const AllToy = () => {
           className="button button-pink  px-4"
           
         >
-         Total toy : <span className="ml-2">{data?.data.length}</span>
+         Total toy : <span className="ml-2">{data?.data?.length}</span>
         </Button>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4">
-        {data?.data.map((card) => (
+        {data?.data?.map((card) => (
           <SingleCard key={card?._id} card={card}></SingleCard>
         ))}
       </div>

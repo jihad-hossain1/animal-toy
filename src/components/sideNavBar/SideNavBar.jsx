@@ -27,6 +27,7 @@ import {RiBearSmileLine} from 'react-icons/ri'
 import {RxCross2} from 'react-icons/rx'
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useLocation } from 'react-router-dom';
+import DealOfTheDay from './dealOfTheDay/DealOfTheDay';
 
 
 const SideNavBar = () => {
@@ -185,11 +186,7 @@ const SideNavBar = () => {
       {
         sideNvList
       }
-     {/* {noSideNav || <div className='hidden md:block   w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5  '>
-      <div className='h-[400px] bg-gray-500'>
-      sidenav on Tranding
-      </div>
-    </div>} */}
+     
      {sideFilterNav && <div className='hidden md:block   w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5  '>
       <div className='h-[400px] bg-blue-gray-50 p2 pt-3'>
       <h4 className='uppercase  font-semibold text-center'>
@@ -198,11 +195,8 @@ const SideNavBar = () => {
       </div>
     </div>}
     {nosideFilterNav || <div className='mt-4 hidden md:block   w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5  '>
-      <div className='min-h-[100px] bg-gray-50 p-2'>
-      <h4 className='uppercase text-xl font-semibold'>
-      DEAL OF THE DAY
-      </h4>
-      </div>
+    {/* DEAL OF THE DAY */}
+      <DealOfTheDay />
       <div className='min-h-[100px] bg-gray-50 p-2'>
       new arrival
       </div>

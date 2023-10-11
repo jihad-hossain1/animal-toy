@@ -1,16 +1,61 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {TbEye} from 'react-icons/tb'
 import {MdOutlineFavoriteBorder} from 'react-icons/md'
 import { Link } from 'react-router-dom';
 // import { Rating } from '@material-tailwind/react';
 import { Rate } from 'antd';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
+import { AuthContext } from '../../../authentication/AuthProvider';
+import useUserCart from '../../../hooks/useUserCart';
 const SingleCard = ({card}) => {
     const {price,images,toyTitle,rating,quantity} = card;
+    const {user} = useContext(AuthContext)
+    const [carts, refetch] = useUserCart()
+    console.log(carts);
+    // const oneCart = carts.filter(item=>item.userCartItemId)
+    
+    // console.log(oneCart);
+     const handleEnrollCart = async (toyObj)=>{
+         if(!user){
+           return toast.error('login first')
+         }else{
+        //    const cartVerify = carts.find(({_id})=> _id == oneCart._id)
+        const findDuplicateUserCartItem = carts.find(({userCartItemId})=> userCartItemId && user?.email == toyObj?._id  )
+           if(findDuplicateUserCartItem){
+             return toast.error('already added this toy')
+           }
+           else{
+            const userInfo ={
+                email: user?.email,
+                userCart: toyObj,
+                userCartItemId: toyObj?._id,
+            }
+             const res = await fetch(
+               `${import.meta.env.VITE_BASE_URL}/carts`,
+               {
+                 method: "POST",
+                 headers: {
+                   "content-type": "application/json",
+                 },
+                 body: JSON.stringify(userInfo),
+               }
+             );
+             const data = await res.json();
+             if(data){
+                refetch()
+               toast.success('check your cart')
+             //   isEnrollRefetch()
+             
+             }
+            //  console.log(data);
+            }
+         }
+       }
    
     return (
         <div>
             <div className='group'>
+                <Toaster />
             {/* {quantity <= 0 ? 'hidden' :'block' } */}
                 <div className='relative overflow-hidden'>
                     <div className={quantity <= 0 ? 'block transition-all duration-300' :'hidden' }>
@@ -36,7 +81,7 @@ const SingleCard = ({card}) => {
                         </div>
                        
                         <div className='flex justify-center mb-1'>
-                        <button disabled={quantity == 0 } className='bg-[#f0c507] px-2 py-1 md:px-4 md:py-2 rounded text-black text-xs md:text-[14px] inline-block uppercase hover:bg-[#fc82bd] hover:text-white transition-all duration-500'>add to cart</button>
+                        <button onClick={()=>handleEnrollCart(card)} disabled={quantity == 0 } className='bg-[#f0c507] px-2 py-1 md:px-4 md:py-2 rounded text-black text-xs md:text-[14px] inline-block uppercase hover:bg-[#fc82bd] hover:text-white transition-all duration-500'>add to cart</button>
                         </div>
                     </div>
                 
