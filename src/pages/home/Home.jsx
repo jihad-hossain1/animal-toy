@@ -3,10 +3,11 @@ import Slider from "./slider/Slider";
 import Offer from "./offer/Offer";
 import DealOfTheDay from "../../components/sideNavBar/dealOfTheDay/DealOfTheDay";
 import SideNavBar from "../../components/sideNavBar/SideNavBar";
+import Tranding from "./tranding/Tranding";
 
 const Home = () => {
   return (
-    <div>
+    <div className="">
       <div className="flex space-x-2">
         <div className="hidden md:block ">
           <SideNavBar></SideNavBar>
@@ -20,11 +21,15 @@ const Home = () => {
         <Offer />
       </div>
       {/* dealOfTheDay & tranding option  */}
-      <div className="flex">
-        <div className="hidden md:block">
+      <div className="grid md:grid-cols-4 mt-5 mb-10 p-2 md:p-0 gap-4">
+        <div className="hidden md:block m-2 md:m-0">
           <DealOfTheDay />
         </div>
-        <div>tranding</div>
+        <div className="col-span-3">
+          <div className="">
+          <Tranding />
+          </div>
+        </div>
       </div>
       <div className="h-[500px] md:hidden">
         <DealOfTheDay />

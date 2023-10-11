@@ -20,7 +20,7 @@ const DealOfTheDay = () => {
   return (
     <div className=" min-h-[100px] bg-gray-50 p-2 ">
       
-    <div style={containerStyles} className="h-full">
+    <div style={containerStyles} className="h-full w-full">
     <ImageSlider trnad={trnad} />
     </div>
     </div>

@@ -19,6 +19,7 @@ import ToyReview from "./toyReview/ToyReview";
 
 import { Link } from "react-scroll";
 import UserCart from "../../profile/cart/UserCart";
+import SideNavBar from "../../../components/sideNavBar/SideNavBar";
 
 
 
@@ -44,7 +45,12 @@ const ToyDetails = () => {
   };
   console.log(singleToy);
   return (
-    <div className="p-2 mt-4 font-kanit font-medium">
+   <div className="flex space-x-2">
+    <div className="hidden md:block ">
+          <SideNavBar></SideNavBar>
+          {/* <DealOfTheDay /> */}
+        </div>
+     <div className="p-2 mt-4 font-kanit font-medium">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div className="h-96">
           <img
@@ -310,6 +316,7 @@ const ToyDetails = () => {
         </Tabs>
       </div>
     </div>
+   </div>
   );
 };
 
