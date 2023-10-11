@@ -173,7 +173,7 @@ const SideNavBar = () => {
     return (
         <>
   {/* h-[calc(100vh-2rem)] */}
-        <div className="hidden md:block   w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5 sticky top-0">
+        <div className="hidden md:block   w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5 ">
       <div className="mb-2">
       <div className="bg-[#ffd92e]  drop-shadow">
           <h4 className=" w-full uppercase font-semibold py-3 flex items-center  space-x-3 px-5">
@@ -187,17 +187,17 @@ const SideNavBar = () => {
         sideNvList
       }
      
-     {sideFilterNav && <div className='hidden md:block   w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5  '>
+     {/* {sideFilterNav && <div className='hidden md:block   w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5  '>
       <div className='h-[400px] bg-blue-gray-50 p2 pt-3'>
       <h4 className='uppercase  font-semibold text-center'>
       Fileter on Toys
       </h4>
       </div>
-    </div>}
+    </div>} */}
     {nosideFilterNav || <div className='mt-4 hidden md:block   w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5  '>
     {/* DEAL OF THE DAY */}
-      <DealOfTheDay />
-      <div className='min-h-[100px] bg-gray-50 p-2'>
+      {/* <DealOfTheDay /> */}
+      {/* <div className='min-h-[100px] bg-gray-50 p-2'>
       new arrival
       </div>
       <div className='min-h-[100px] bg-gray-50 p-2'>
@@ -205,7 +205,7 @@ const SideNavBar = () => {
       </div>
       <div className='min-h-[100px] bg-gray-50 p-2'>
       Newsletter
-      </div>
+      </div> */}
     </div> }
     
     </div>

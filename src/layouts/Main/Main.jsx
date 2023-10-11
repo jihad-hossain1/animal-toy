@@ -30,14 +30,9 @@ const Main = () => {
         {/* Desktop Navbar  */}
           <DesktopNav></DesktopNav>
       </header>
-      <div className="container mx-auto grid md:flex  md:space-x-2">
-        <div className="hidden md:block ">
-        <SideNavBar></SideNavBar>
-        </div>
-        {/* main Outlet  */}
-        <div className="md:ml-48 container  mx-auto border px-2">
-        <Outlet></Outlet>
-        </div>
+      <div className="container mx-auto ">
+        
+      <Outlet></Outlet>
       </div>
       {/* footer section  */}
       <Footer></Footer>
@@ -46,3 +41,17 @@ const Main = () => {
 };
 
 export default Main;
+
+const raf = (
+  <>
+  <div className="container mx-auto grid md:flex  md:space-x-2">
+        <div className="hidden md:block ">
+        <SideNavBar></SideNavBar>
+        </div>
+        {/* main Outlet  */}
+        <div className="md:ml-48 container  mx-auto border px-2">
+        <Outlet></Outlet>
+        </div>
+      </div>
+  </>
+)

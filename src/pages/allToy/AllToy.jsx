@@ -5,6 +5,7 @@ import axios from "axios";
 import { MoonLoader } from "react-spinners";
 import SingleCard from "./singleCard/SingleCard";
 import { Button } from "antd";
+import SideNavBar from "../../components/sideNavBar/SideNavBar";
 // import { FadeLoader } from 'react-spinners';
 
 const fetchData = () => {
@@ -26,6 +27,11 @@ const AllToy = () => {
   }
 
   return (
+    <div className="flex container mx-auto">
+      <div className="hidden md:block ">
+          <SideNavBar></SideNavBar>
+          {/* <DealOfTheDay /> */}
+        </div>
     <div className="">
       <div className="flex justify-center py-4">
         <Button danger
@@ -40,6 +46,7 @@ const AllToy = () => {
           <SingleCard key={card?._id} card={card}></SingleCard>
         ))}
       </div>
+    </div>
     </div>
   );
 };
