@@ -21,7 +21,7 @@ const Home = () => {
         <Offer />
       </div>
       {/* dealOfTheDay & tranding option  */}
-      <div className="grid md:grid-cols-4 mt-5 mb-10 p-2 md:p-0 gap-4">
+      <div className="grid md:grid-cols-4 mt-5 mb-10 p-2 md:p-0 gap-4 bg-blue-gray-50 bg-opacity-10 rounded-lg mx-2 md:mx-0">
         <div className="hidden md:block m-2 md:m-0">
           <DealOfTheDay />
         </div>

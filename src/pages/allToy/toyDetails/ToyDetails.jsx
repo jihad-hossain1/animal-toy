@@ -28,6 +28,7 @@ const ToyDetails = () => {
   const singleToy = useLoaderData();
   // const [isLoading,setIsLoading] = useState({});
   const [percent, setPercent] = useState(0);
+  const [activeTab, setActiveTab] = useState("description");
 
   const increase = () => {
     let newPercent = percent + 1;
@@ -215,21 +216,25 @@ const ToyDetails = () => {
       </div>
       {/* description & review & condition by tab section  */}
       <div className="mt-2">
-        <Tabs id="custom-animation" value="html">
+        <Tabs id="custom-animation" value={activeTab}>
           <TabsHeader>
             
-            <Tab value={'description'}>
+            <Tab onClick={() => setActiveTab()}
+            className={activeTab  ? "text-gray-900" : ""} value={'description'}>
                 {'Description'}
               </Tab>
-            <Tab value={'review'}>
+            <Tab onClick={() => setActiveTab()}
+            className={activeTab  ? "text-gray-900" : ""} value={'review'}>
                 <div id="review">
                 {'Review'}
                 </div>
               </Tab>
-            <Tab value={'ShipingReturn'}>
+            <Tab onClick={() => setActiveTab()}
+            className={activeTab  ? "text-gray-900" : ""} value={'ShipingReturn'}>
             {'Shipping'}
               </Tab>
-            <Tab value={'others'}>
+            <Tab onClick={() => setActiveTab()}
+            className={activeTab  ? "text-gray-900" : ""} value={'others'}>
                 {'Others'}
               </Tab>
           </TabsHeader>

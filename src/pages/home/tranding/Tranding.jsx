@@ -1,100 +1,69 @@
-import React, { useEffect, useState } from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
-import { useToys } from '../../../hooks/useToys';
-import SingleTrandingToy from './SingleTrandingToy';
+import React, { useEffect, useState } from "react";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import SingleTrandingToy from "./SingleTrandingToy";
 
-const item =[
-    {
-        a: 'abc'
-    },
-    
-    {
-        a: 'xyz'
-    },
+const Tranding = () => {
+  const [toys, setToys] = useState([]);
 
-]
-const item2 =[
-    {
-        a: 'abc'
-    },
-    
-    {
-        a: 'xyz'
-    },
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_BASE_URL}/toys`)
+      .then((res) => res.json())
+      .then((data) => setToys(data));
+  }, []);
 
-]
-const item3 =[
-    {
-        a: 'abc'
-    },
-    
-    {
-        a: 'xyz'
-    },
+  const featuredToy = toys.filter((toy) => toy?.featured === "featured");
+  const latestToy = toys.filter((toy) => toy?.featured === "latest");
+  const bestSeller = toys.filter((toy) => toy?.featured === "bestseller");
 
-]
+  return (
+    <div className="p-2">
+      <Tabs>
+        <TabList
+          className={`grid md:flex space-x-3 md:justify-between justify-center items-center border-b pb-3`}
+        >
+          <div className="font-extrabold uppercase text-center md:text-start mb-5 md:mb-0 border-b md:border-0 pb-4 md:pb-0 flex space-x-4 items-center">
+            <div className="bg-[#fc82bd] drop-shadow shadow-md rounded-full w-3 h-3"></div>
+            <h4>Trending Products</h4></div>
+          <div>
+            <div className="flex space-x-4">
+              <Tab className={`cursor-pointer font-semibold`}>Featured</Tab>
+              <Tab className={` cursor-pointer font-semibold`}>Latest</Tab>
+              <Tab className={` cursor-pointer font-semibold`}>
+                Best Sellers
+              </Tab>
+            </div>
+          </div>
+        </TabList>
 
- const Tranding = () => {
-    const [toys,setToys] = useState([]);
+       <div className="mt-4">
+       <TabPanel>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {featuredToy?.map((ite, index) => (
+              <SingleTrandingToy ite={ite} key={index}></SingleTrandingToy>
+            ))}
+          </div>
+        </TabPanel>
 
-    useEffect(()=>{
-        fetch(`${import.meta.env.VITE_BASE_URL}/toys`).then(res=>res.json()).then(data=>setToys(data))
-    },[])
+        <TabPanel>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {latestToy?.map((ite, index) => (
+              <SingleTrandingToy ite={ite} key={index}></SingleTrandingToy>
+            ))}
+          </div>
+        </TabPanel>
 
-    
-    const featuredToy = toys.filter((toy)=>toy?.featured === "featured")
-    const latestToy = toys.filter((toy)=>toy?.featured === "latest")
-    const bestSeller = toys.filter((toy)=>toy?.featured === "bestseller")
-
-   return (
-   <div className=''>
-   
-  
-   <Tabs>
-    <TabList>
-    <Tab>Featured</Tab>
-    <Tab>Latest</Tab>
-      <Tab>Best Sellers</Tab>
-      
-      
-    </TabList>
-
-    <TabPanel>
-     <div className='grid grid-cols-1 md:grid-cols-3 gap-3'>
-     {
-        featuredToy?.map((ite,index)=><SingleTrandingToy ite={ite} key={index}>
-            
-        </SingleTrandingToy>)
-     }
-     </div>
-    </TabPanel>
-
-    <TabPanel>
-     <div className='grid grid-cols-1 md:grid-cols-3 gap-3'>
-     {
-        latestToy?.map((ite,index)=><SingleTrandingToy ite={ite} key={index}>
-           
-        </SingleTrandingToy>)
-     }
-     </div>
-    </TabPanel>
-
-    <TabPanel>
-     <div className='flex space-x-2 '>
-     {
-        bestSeller?.map((ite,index)=><SingleTrandingToy ite={ite} key={index}>
-            
-        </SingleTrandingToy>)
-     }
-     </div>
-    </TabPanel>
-    
-  </Tabs>
-   
-   </div>
-   )
+        <TabPanel>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {bestSeller?.map((ite, index) => (
+              <SingleTrandingToy ite={ite} key={index}></SingleTrandingToy>
+            ))}
+          </div>
+        </TabPanel>
+       </div>
+      </Tabs>
+    </div>
+  );
 };
 
-export default Tranding
-
+export default Tranding;

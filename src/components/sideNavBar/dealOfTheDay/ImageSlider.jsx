@@ -51,7 +51,7 @@ const ImageSlider = ({ trnad }) => {
   return (
     <>
       <div className="flex md:justify-between space-x-2 mb-2">
-        <div className="uppercase font-bold  flex items-center space-x-2">
+        <div className="uppercase font-extrabold  flex items-center space-x-4 border-b pb-3">
           <div className="bg-[#fc82bd] drop-shadow shadow-md rounded-full w-3 h-3 fontStyle"></div>{" "}
           <h4> deal Of The Day</h4>
         </div>
