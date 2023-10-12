@@ -47,7 +47,7 @@ const Tranding = () => {
             </div>
             <div className="flex justify-center mt-6">
               <Link to={'/alltoys'}>
-              <button className="bg-[#f0c507] px-3 py-2 md:px-4 md:py-2 rounded text-black text-xs md:text-[14px] inline-block uppercase hover:bg-[#fc82bd] hover:text-white transition-all duration-500">
+              <button className="bg-[#f0c507] px-3 py-2 md:px-4 md:py-2 rounded-lg text-black text-xs md:text-[14px] inline-block uppercase hover:bg-[#fc82bd] hover:text-white transition-all duration-500">
                 View all
               </button>
               </Link>
@@ -62,7 +62,7 @@ const Tranding = () => {
             </div>
             <div className="flex justify-center mt-6">
               <Link to={'/alltoys'}>
-              <button className="bg-[#f0c507] px-3 py-2 md:px-4 md:py-2 rounded text-black text-xs md:text-[14px] inline-block uppercase hover:bg-[#fc82bd] hover:text-white transition-all duration-500">
+              <button className="bg-[#f0c507] px-3 py-2 md:px-4 md:py-2 rounded-lg text-black text-xs md:text-[14px] inline-block uppercase hover:bg-[#fc82bd] hover:text-white transition-all duration-500">
                 View all
               </button>
               </Link>
@@ -77,7 +77,7 @@ const Tranding = () => {
             </div>
             <div className="flex justify-center mt-6">
               <Link to={'/alltoys'}>
-              <button className="bg-[#f0c507] px-3 py-2 md:px-4 md:py-2 rounded text-black text-xs md:text-[14px] inline-block uppercase hover:bg-[#fc82bd] hover:text-white transition-all duration-500">
+              <button className="bg-[#f0c507] px-3 py-2 md:px-4 md:py-2 rounded-lg text-black text-xs md:text-[14px] inline-block uppercase hover:bg-[#fc82bd] hover:text-white transition-all duration-500">
                 View all
               </button>
               </Link>
