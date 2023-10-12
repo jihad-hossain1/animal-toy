@@ -3,19 +3,26 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import SingleTrandingToy from "./SingleTrandingToy";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { MoonLoader } from "react-spinners";
+
+const fetchData = () => {
+    return axios.get(`${import.meta.env.VITE_BASE_URL}/toys`);
+  };
 
 const Tranding = () => {
-  const [toys, setToys] = useState([]);
-
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_BASE_URL}/toys`)
-      .then((res) => res.json())
-      .then((data) => setToys(data));
-  }, []);
-
-  const featuredToy = toys.filter((toy) => toy?.featured === "featured");
-  const latestToy = toys.filter((toy) => toy?.featured === "latest");
-  const bestSeller = toys.filter((toy) => toy?.featured === "bestseller");
+  const { isLoading, data, isError, error,refetch } = useQuery(["toys"], fetchData);
+  if (isLoading) {
+    return (
+      <div className=" flex flex-col justify-center items-center my-20  md:mt-48">
+        <MoonLoader color="#ff0b96" />
+      </div>
+    );
+  }
+  if (isError) {
+    return <div>{error.message}</div>;
+  }
 
   return (
     <div className="p-2">
@@ -41,9 +48,7 @@ const Tranding = () => {
         <div className="mt-4">
           <TabPanel>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {featuredToy?.map((ite, index) => (
-                <SingleTrandingToy ite={ite} key={index}></SingleTrandingToy>
-              ))}
+            {data?.data?.filter((item)=>item?.featured === "featured").map((ite,index)=><SingleTrandingToy key={index} ite={ite} />)}
             </div>
             <div className="flex justify-center mt-6">
               <Link to={'/alltoys'}>
@@ -56,9 +61,7 @@ const Tranding = () => {
 
           <TabPanel>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {latestToy?.map((ite, index) => (
-                <SingleTrandingToy ite={ite} key={index}></SingleTrandingToy>
-              ))}
+            {data?.data?.filter((item)=>item?.featured === "latest").map((ite,index)=><SingleTrandingToy key={index} ite={ite} />)}
             </div>
             <div className="flex justify-center mt-6">
               <Link to={'/alltoys'}>
@@ -71,9 +74,7 @@ const Tranding = () => {
 
           <TabPanel>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {bestSeller?.map((ite, index) => (
-                <SingleTrandingToy ite={ite} key={index}></SingleTrandingToy>
-              ))}
+            {data?.data?.filter((item)=>item?.featured === "bestseller").map((ite,index)=><SingleTrandingToy key={index} ite={ite} />)}
             </div>
             <div className="flex justify-center mt-6">
               <Link to={'/alltoys'}>

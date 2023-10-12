@@ -20,7 +20,7 @@ const Home = () => {
           <SideNavBar></SideNavBar>
           {/* <DealOfTheDay /> */}
         </div>
-        <div className="mt-2">
+        <div className="mt-2 px-2 bg-blue-gray-50 py-2 rounded-lg">
           <Slider />
         </div>
       </div>
