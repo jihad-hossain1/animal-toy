@@ -10,10 +10,16 @@ const UserCart = ({singleToy}) => {
         if(!user){
           return toast.error('login first')
         }else{
-          const cartVerify = carts.find(({_id})=> _id == singleToy._id)
+          const cartVerify = carts?.find((item)=> item?.itemId == singleToy._id)
           if(cartVerify){
             return toast.error('already added this toy')
           }else{
+            const info={
+              itemId: toyObj?._id,
+              email: user?.email,
+              item: toyObj,
+
+          }
             const res = await fetch(
               `${import.meta.env.VITE_BASE_URL}/carts`,
               {
@@ -21,7 +27,7 @@ const UserCart = ({singleToy}) => {
                 headers: {
                   "content-type": "application/json",
                 },
-                body: JSON.stringify(toyObj),
+                body: JSON.stringify(info),
               }
             );
             const data = await res.json();
@@ -30,7 +36,7 @@ const UserCart = ({singleToy}) => {
               toast.success('check your cart')
             //   isEnrollRefetch()
             }
-            console.log(data);
+            // console.log(data);
           }
         }
       }

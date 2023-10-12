@@ -6,23 +6,27 @@ import { Link } from 'react-router-dom';
 import { Rate } from 'antd';
 import toast, { Toaster } from 'react-hot-toast';
 import { AuthContext } from '../../../authentication/AuthProvider';
+import useUserCart from '../../../hooks/useUserCart';
 
 
 const SingleTrandingToy = ({ite}) => {
     const {user} = useContext(AuthContext)
     const {price,images,toyTitle,rating,quantity} = ite;
-
+    const [carts,refetch] = useUserCart()
     const handleEnrollCart = async (toyObj)=>{
         if(!user){
           return toast.error('login first')
         }else{
-       //   
-        
-           const userInfo ={
-               email: user?.email,
-               userCart: toyObj,
-               userCartItemId: toyObj?._id,
-           }
+          const cartVerify = carts?.find((item)=> item?.itemId == toyObj?._id)
+          if(cartVerify){
+            return toast.error('already added this toy')
+          }else{
+            const info={
+                itemId: toyObj?._id,
+                email: user?.email,
+                item: toyObj,
+
+            }
             const res = await fetch(
               `${import.meta.env.VITE_BASE_URL}/carts`,
               {
@@ -30,18 +34,17 @@ const SingleTrandingToy = ({ite}) => {
                 headers: {
                   "content-type": "application/json",
                 },
-                body: JSON.stringify(userInfo),
+                body: JSON.stringify(info),
               }
             );
             const data = await res.json();
             if(data){
-               refetch()
+              refetch()
               toast.success('check your cart')
             //   isEnrollRefetch()
-            
             }
-           //  console.log(data);
-         
+            console.log(data);
+          }
         }
       }
     return (

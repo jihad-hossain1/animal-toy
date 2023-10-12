@@ -8,6 +8,13 @@ import Contact from "../pages/contact/Contact";
 import Blogs from "../pages/blogs/Blogs";
 import { Login } from "../pages/log/Login";
 import ToyDetails from "../pages/allToy/toyDetails/ToyDetails";
+import AdminDashboard from "../layouts/admin/AdminDashboard";
+import AdminDashboardHome from "../pages/dashboard/admin/adminDashboardHome/AdminDashboardHome";
+import SellerDashboardHome from "../pages/dashboard/seller/SellerDashboardHome";
+import UserDashboard from "../layouts/user/UserDashboard";
+import UserDashboardHome from "../pages/dashboard/user/userProfile/UserDashboardHome";
+import SellerDashboard from "../layouts/seller/sellerDashboard";
+
 
 export const router = createBrowserRouter([
     {
@@ -47,9 +54,34 @@ export const router = createBrowserRouter([
             {
                 path: '/blogs',
                 element: <Blogs></Blogs>
+            },
+            {
+                path: '/userDashboard',
+                element: <UserDashboardHome />,
             }
         ]
     },
+    {
+        path: '/dashboardAdminOnly',
+        element: <AdminDashboard />,
+        children: [ 
+            {
+                path: '/dashboardAdminOnly',
+                element: <AdminDashboardHome />,
+            }
+        ]
+    },
+    {
+        path: '/dashboardSellerOnly',
+        element: <SellerDashboard />,
+        children: [ 
+            {
+                path: '/dashboardSellerOnly',
+                element: <SellerDashboardHome />,
+            }
+        ]
+    },
+    
     {
         path: '/login',
         element: <Login />

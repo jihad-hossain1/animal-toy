@@ -11,46 +11,45 @@ const SingleCard = ({card}) => {
     const {price,images,toyTitle,rating,quantity} = card;
     const {user} = useContext(AuthContext)
     const [carts, refetch] = useUserCart()
-    console.log(carts);
+    // console.log(carts);
     // const oneCart = carts.filter(item=>item.userCartItemId)
     
     // console.log(oneCart);
-     const handleEnrollCart = async (toyObj)=>{
-         if(!user){
-           return toast.error('login first')
-         }else{
-        //    const cartVerify = carts.find(({_id})=> _id == oneCart._id)
-        const findDuplicateUserCartItem = carts.find(({userCartItemId})=> userCartItemId && user?.email == toyObj?._id  )
-           if(findDuplicateUserCartItem){
-             return toast.error('already added this toy')
-           }
-           else{
-            const userInfo ={
+    const handleEnrollCart = async (toyObj)=>{
+        if(!user){
+          return toast.error('login first')
+        return 
+        }else{
+          const cartVerify = carts?.find(item=> item?.itemId == toyObj?._id)
+          if(cartVerify){
+            return toast.error('already added this toy please check cart')
+          }else{
+            const info={
+                itemId: toyObj?._id,
                 email: user?.email,
-                userCart: toyObj,
-                userCartItemId: toyObj?._id,
+                item: toyObj,
+  
             }
-             const res = await fetch(
-               `${import.meta.env.VITE_BASE_URL}/carts`,
-               {
-                 method: "POST",
-                 headers: {
-                   "content-type": "application/json",
-                 },
-                 body: JSON.stringify(userInfo),
-               }
-             );
-             const data = await res.json();
-             if(data){
-                refetch()
-               toast.success('check your cart')
-             //   isEnrollRefetch()
-             
-             }
-            //  console.log(data);
+            const res = await fetch(
+              `${import.meta.env.VITE_BASE_URL}/carts`,
+              {
+                method: "POST",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify(info),
+              }
+            );
+            const data = await res.json();
+            if(data){
+              refetch()
+              toast.success('check your cart')
+            //   isEnrollRefetch()
             }
-         }
-       }
+            console.log(data);
+          }
+        }
+      }
    
     return (
         <div>

@@ -9,6 +9,8 @@ import BigOffer from "./bigOffer/BigOffer";
 import LatestNews from "./latestNews/LatestNews";
 import NewArrival from "./newArrival/NewArrival";
 import NewsLetter from "./newsLetter/NewsLetter";
+import Sponser from "./sponser/Sponser";
+import SocialButton from "./social/SocialButton";
 
 const Home = () => {
   return (
@@ -25,7 +27,6 @@ const Home = () => {
       <div className="min-h-32 bg-blue-gray-50 bg-opacity-50 drop-shadow-sm mt-6 rounded-md p-2">
         <Offer />
       </div>
-
       {/* dealOfTheDay & tranding option  */}
       <div className="grid md:grid-cols-4 mt-5 mb-10 p-2 md:p-0 gap-4 bg-blue-gray-50 bg-opacity-10 rounded-lg mx-2 md:mx-0">
         <div className="hidden md:block m-2 md:m-0">
@@ -50,11 +51,19 @@ const Home = () => {
           <div>
             <LatestNews />
           </div>
+          
         </div>
       </div>
+      <div className="my-12">
+            <Sponser />
+          </div>
+      
       <div className="h-[500px] md:hidden">
         <DealOfTheDay />
       </div>
+      <div className="mt-6">
+            <SocialButton />
+          </div>
     </div>
   );
 };

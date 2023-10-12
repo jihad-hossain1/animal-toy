@@ -58,8 +58,8 @@ const LatestNews = () => {
 
   return (
     <div>
-      <div className="hidden md:block mt-6 border p-2 md:p-5 rounded-lg">
-        <div className="font-extrabold uppercase text-center md:text-start mb-5  border-b  pb-4  flex space-x-4 items-center">
+      <div className="hidden md:block mt-10 border-t border-l border-r  p-2 md:p-5 rounded-lg">
+        <div className="font-extrabold uppercase text-center md:text-start mb-7  border-b  pb-4  flex space-x-4 items-center">
           <div className="bg-[#fc82bd] drop-shadow shadow-md rounded-full w-3 h-3"></div>
           <h4>Latest News</h4>
         </div>

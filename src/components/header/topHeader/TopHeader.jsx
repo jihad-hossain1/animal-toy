@@ -17,6 +17,7 @@ import { AuthContext } from "../../../authentication/AuthProvider";
 
 const TopHeader = () => {
   const { user, logOut } = useContext(AuthContext);
+  // const [users] = 8
   return (
     <>
       <div className="bg-blue-gray-50 text-gray-700">
@@ -58,7 +59,7 @@ const TopHeader = () => {
                             <span>Profile</span>
                           </MenuItem>
                         </Link>
-                        <Link to={"/"}>
+                        <Link to={"/dashboardSellerOnly"}>
                           <MenuItem className="flex space-x-2 items-center">
                             {" "}
                             <LuLayoutDashboard className="text-xl" />{" "}
