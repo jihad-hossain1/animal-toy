@@ -8,6 +8,7 @@ import ServiceProvide from "./service/ServiceProvide";
 import BigOffer from "./bigOffer/BigOffer";
 import LatestNews from "./latestNews/LatestNews";
 import NewArrival from "./newArrival/NewArrival";
+import NewsLetter from "./newsLetter/NewsLetter";
 
 const Home = () => {
   return (
@@ -23,16 +24,18 @@ const Home = () => {
       </div>
       <div className="min-h-32 bg-blue-gray-50 bg-opacity-50 drop-shadow-sm mt-6 rounded-md p-2">
         <Offer />
-        
       </div>
-      
+
       {/* dealOfTheDay & tranding option  */}
       <div className="grid md:grid-cols-4 mt-5 mb-10 p-2 md:p-0 gap-4 bg-blue-gray-50 bg-opacity-10 rounded-lg mx-2 md:mx-0">
         <div className="hidden md:block m-2 md:m-0">
           <DealOfTheDay />
           <div className="min-h-32 bg-blue-gray-50 bg-opacity-50 drop-shadow-sm mt-6 rounded-md p-2">
-        <NewArrival />
-      </div>
+            <NewArrival />
+          </div>
+          <div className="mt-5">
+            <NewsLetter />
+          </div>
         </div>
         <div className="col-span-3">
           <div className="">
@@ -45,7 +48,6 @@ const Home = () => {
             <BigOffer />
           </div>
           <div>
-            
             <LatestNews />
           </div>
         </div>
@@ -59,7 +61,8 @@ const Home = () => {
 
 export default Home;
 
-
-{/* <div className="min-h-32 bg-blue-gray-50 bg-opacity-50 drop-shadow-sm mt-6 rounded-md p-2">
+{
+  /* <div className="min-h-32 bg-blue-gray-50 bg-opacity-50 drop-shadow-sm mt-6 rounded-md p-2">
         <NewArrival />
-      </div> */}
+      </div> */
+}
