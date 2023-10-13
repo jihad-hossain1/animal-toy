@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Input, Button, Drawer, Typography, IconButton, DialogHeader, DialogBody, Dialog, DialogFooter } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import {MdAddShoppingCart} from 'react-icons/md'
 import {TfiEmail} from 'react-icons/tfi'
 import {RiSearchLine} from 'react-icons/ri'
 import Search from "../search/Search";
+import axios from "axios";
+import { AuthContext } from "../../authentication/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import { Avatar, Badge, Switch, Space } from 'antd';
+// carts is fetching 
+const fetchData = () => {
+  return axios.get(`${import.meta.env.VITE_BASE_URL}/allcarts`);
+};
 
 const LogoWithSearchNav = () => {
-  // const [openSearch, setOpenSearch] = useState(false)
-  // const onChange = ({ target }) => setSearchProduct(target.value);
+  const {user} = useContext(AuthContext);
+  const { isLoading, data, isError, error,refetch } = useQuery(["carts"], fetchData);
+ 
   const [openRight, setOpenRight] = useState(false);
   const openDrawerRight = () => setOpenRight(true);
   const closeDrawerRight = () => setOpenRight(false);
@@ -67,12 +76,26 @@ const LogoWithSearchNav = () => {
               </div>
             </div>
             <button className="md:flex space-x-2 items-center">
+              <Badge size="default" count={user ? data?.data?.filter((item)=>{
+            const totalCart = item.email === user?.email
+            if(totalCart){
+              refetch()
+              return totalCart
+            }
+          }).length : 0}>
               <MdAddShoppingCart onClick={openDrawerRight} className="text-3xl md:text-4xl" />
+              </Badge>
               <div className="hidden md:block">
               <span className=" font-semibold">
                 Shoping Cart
               </span>
-              <p className="text-gray-600 text-sm">0 item</p>
+              <p className="text-gray-600 text-sm"><span>{user ? data?.data?.filter((item)=>{
+            const totalCart = item.email === user?.email
+            if(totalCart){
+              refetch()
+              return totalCart
+            }
+          }).length : 0}</span> item</p>
               </div>
             </button>
           </div>
@@ -108,7 +131,15 @@ const LogoWithSearchNav = () => {
           </IconButton>
         </div>
         <div>
-        <p className="text-gray-600 text-sm">0 item</p>
+          {user ? data?.data?.filter((item)=>{
+            const totalCart = item.email === user?.email
+            if(totalCart){
+              
+              refetch()
+              return totalCart;
+            }
+          }).length : 0}
+        <p className="text-gray-600 text-sm">item</p>
         </div>
       </Drawer>
       </div>

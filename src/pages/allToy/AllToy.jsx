@@ -7,6 +7,7 @@ import SideNavBar from "../../components/sideNavBar/SideNavBar";
 import { AiOutlinePause } from "react-icons/ai";
 import { HiOutlineBars4, HiOutlineBars3 } from "react-icons/hi2";
 import { Tooltip } from "@material-tailwind/react";
+import ProductFilter from "../../components/productFilter/ProductFilter";
 
 const fetchData = () => {
   return axios.get(`${import.meta.env.VITE_BASE_URL}/toys`);
@@ -25,9 +26,14 @@ const AllToy = () => {
   }
   return (
     <div className="flex  md:space-x-2 pb-6 mx-3">
+      <div>
       <div className="hidden md:block ">
         <SideNavBar></SideNavBar>
-        {/* <DealOfTheDay /> */}
+        <div className="border border-blue-gray-100/70 p-3 drop-shadow-sm shadow-sm rounded-lg bg-blue-gray-50 bg-opacity-50">
+        <ProductFilter data={data} />
+        </div>
+      </div>
+
       </div>
       <div className="">
         <div className="flex flex-col md:flex-row md:justify-between space-y-3 md:space-y-0 md:items-center py-4 bg-blue-gray-50 rounded border drop-shadow-sm border-blue-gray-50 px-2 mb-4 mt-4">

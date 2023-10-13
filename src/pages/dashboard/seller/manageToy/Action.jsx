@@ -14,13 +14,10 @@ import { PencilIcon } from "@heroicons/react/24/solid";
 import Swal from "sweetalert2";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-
+import UpdateToy from "../updateToy/UpdateToy";
 
 
 const Action = ({ ite,refetch }) => {
-  const modalRef = useRef(null);
-  const formRef = useRef(null);
-  const [updateData, setUpdateData] = useState(null);
 
 
   // delete toy
@@ -43,12 +40,15 @@ const Action = ({ ite,refetch }) => {
             if (res.data.deletedCount > 0) {
               refetch();
               // Swal.fire("Deleted!", "Your file has been deleted.", "success");
-              toast.success("your review delete successfull");
+              toast.success("your toy delete successfull");
             }
           });
       }
     });
   };
+
+  
+  
   return (
     <>
     <Toaster />
@@ -67,12 +67,8 @@ const Action = ({ ite,refetch }) => {
             <span>Details</span>
           </MenuItem>
           </Link>
-          <MenuItem className="flex space-x-3 items-center">
-            <IconButton variant="text" className="">
-              <PencilIcon className="h-4 w-4" />
-            </IconButton>{" "}
-            <span>Edit</span>
-          </MenuItem>
+          {/* update a toy  */}
+          <UpdateToy ite={ite} refetch={refetch} />
           <MenuItem onClick={()=>handleDeleteToy(ite)} className="flex space-x-3 items-center">
             <IconButton variant="text" className="">
               <BsTrash3Fill className="h-4 w-4" />
