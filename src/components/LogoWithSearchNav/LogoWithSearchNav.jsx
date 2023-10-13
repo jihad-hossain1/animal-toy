@@ -9,6 +9,7 @@ import axios from "axios";
 import { AuthContext } from "../../authentication/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import { Avatar, Badge, Switch, Space } from 'antd';
+import Carts from "../../pages/dashboard/user/userProfile/Carts";
 // carts is fetching 
 const fetchData = () => {
   return axios.get(`${import.meta.env.VITE_BASE_URL}/allcarts`);
@@ -140,6 +141,9 @@ const LogoWithSearchNav = () => {
             }
           }).length : 0}
         <p className="text-gray-600 text-sm">item</p>
+        </div>
+        <div>
+          <Carts refetch={refetch} data={data} isLoading={isLoading} isError={isError} error={error} />
         </div>
       </Drawer>
       </div>
