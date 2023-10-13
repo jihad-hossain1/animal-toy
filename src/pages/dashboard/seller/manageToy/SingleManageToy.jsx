@@ -6,8 +6,9 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import React from "react";
+import Action from "./Action";
 
-const SingleManageToy = ({ ite, classes }) => {
+const SingleManageToy = ({ ite, classes,refetch }) => {
   const handleUpdate = (propCrn) => {
     clg(propCrn);
   };
@@ -50,13 +51,9 @@ const SingleManageToy = ({ ite, classes }) => {
         </Typography>
       </td>
       
-
+      {/* edit delete view option  */}
       <td className={classes}>
-        <Tooltip content="Edit Toy">
-          <IconButton variant="text">
-            <PencilIcon className="h-4 w-4" />
-          </IconButton>
-        </Tooltip>
+        <Action ite={ite} refetch={refetch} />
       </td>
     </tr>
   );

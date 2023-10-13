@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   Navbar,
   MobileNav,
@@ -9,6 +9,8 @@ import {
   IconButton,
   Card,
 } from "@material-tailwind/react";
+
+import {BiArrowBack} from 'react-icons/bi'
 const SellerNavbar = () => {
     const [openNav, setOpenNav] = useState(false);
  
@@ -21,45 +23,37 @@ const SellerNavbar = () => {
    
     const navList = (
       <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+        
         <Typography
           as="li"
           variant="small"
           color="blue-gray"
           className="p-1 font-normal"
         >
-          <Link to={`/dashboardSellerOnly/addToy`} className="flex items-center">
-            Add Toy
-          </Link>
-        </Typography>
-        <Typography
-          as="li"
-          variant="small"
-          color="blue-gray"
-          className="p-1 font-normal"
-        >
-          <Link to={`/dashboardSellerOnly/manageToy`} className="flex items-center">
+          <NavLink className={({isActive})=>isActive ? 'text-pink-500 flex items-center' : 'flex items-center'}  to={`/dashboardSellerOnly/manageToy`} >
             Manage Toys
-          </Link>
+          </NavLink>
         </Typography>
+        
         <Typography
           as="li"
           variant="small"
           color="blue-gray"
           className="p-1 font-normal"
         >
-          <Link to={`dashboardSellerOnly`} className="flex items-center">
-            Blocks
-          </Link>
-        </Typography>
-        <Typography
-          as="li"
-          variant="small"
-          color="blue-gray"
-          className="p-1 font-normal"
-        >
-          <Link to={`/dashboardSellerOnly/carts`} className="flex items-center">
+          <NavLink className={({isActive})=>isActive ? 'text-pink-500 flex items-center' : 'flex items-center'} to={`/dashboardSellerOnly/carts`} >
             Carts
-          </Link>
+          </NavLink>
+        </Typography>
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-normal"
+        >
+          <NavLink  to={`/dashboardSellerOnly`} >
+            Dash-Home
+          </NavLink>
         </Typography>
       </ul>
     );
@@ -68,20 +62,21 @@ const SellerNavbar = () => {
            <div className="container mx-auto mt-2 -m-6 max-h-screen  w-full">
       <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
-          <Typography
+        <NavLink  to={'/'}>
+            <Button variant="outlined" size="sm" fullWidth className=" flex items-center space-x-2 rounded py-1">
+            <BiArrowBack className="text-xl hover:text-pink-400" /> <span>Home</span> 
+          </Button>
+          </NavLink>
+          <div className="flex items-center gap-4">
+            <div className="mr-4 hidden lg:block">{navList}</div>
+            <Typography
             as="a"
             to={``}
             className="mr-4 cursor-pointer py-1.5 font-bold"
           >
             Seller Dashboard
           </Typography>
-          <div className="flex items-center gap-4">
-            <div className="mr-4 hidden lg:block">{navList}</div>
-            <Link className="" to={'/'}>
-          <Button variant="gradient" size="sm" fullWidth className="mb-2">
-            <span>Back Home</span>
-          </Button>
-          </Link>
+            
             <IconButton
               variant="text"
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"

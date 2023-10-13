@@ -17,6 +17,7 @@ import SellerDashboard from "../layouts/seller/sellerDashboard";
 import AddToy from "../pages/dashboard/seller/addToy/AddToy";
 import ManageToy from "../pages/dashboard/seller/manageToy/ManageToy";
 import Carts from "../pages/dashboard/user/userProfile/Carts";
+import UpdateToy from "../pages/dashboard/seller/updateToy/UpdateToy";
 
 
 export const router = createBrowserRouter([
@@ -95,6 +96,7 @@ export const router = createBrowserRouter([
                 path: '/dashboardSellerOnly/carts',
                 element: <Carts />
             }
+            
         ]
     },
     

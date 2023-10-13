@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -6,7 +6,6 @@ import { MoonLoader } from "react-spinners";
 import SingleManageToy from "./SingleManageToy";
 import { AuthContext } from "../../../../authentication/AuthProvider";
 
-import { PencilIcon } from "@heroicons/react/24/solid";
 import {
   ArrowDownTrayIcon,
   MagnifyingGlassIcon,
@@ -17,11 +16,6 @@ import {
   Typography,
   Button,
   CardBody,
-  Chip,
-  CardFooter,
-  Avatar,
-  IconButton,
-  Tooltip,
   Input,
 } from "@material-tailwind/react";
 
@@ -35,7 +29,7 @@ const fetchData = () => {
 
 const ManageToy = () => {
   const { user } = useContext(AuthContext);
-  const { isLoading, data, isError, error } = useQuery(["toys"], fetchData);
+  const { isLoading, data, isError, error,refetch } = useQuery(["toys"], fetchData);
   if (isLoading) {
     return (
       <div className=" flex flex-col justify-center items-center my-20  md:mt-48">
@@ -48,20 +42,15 @@ const ManageToy = () => {
   }
   return (
     <div>
-      <div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {/* {data?.data?.filter((item)=>item?.email === user?.email).map((ite,index)=><SingleManageToy key={index} ite={ite} />)} */}
-        </div>
-      </div>
       <Card className="h-full w-full">
         <CardHeader floated={false} shadow={false} className="rounded-none">
           <div className="mb-4 flex flex-col justify-between gap-8 md:flex-row md:items-center">
             <div>
               <Typography variant="h5" color="blue-gray">
-                Recent Transactions
+                Recent Information
               </Typography>
               <Typography color="gray" className="mt-1 font-normal">
-                These are details about the last transactions
+                These are details about the last toys update & manage
               </Typography>
             </div>
             <div className="flex w-full shrink-0 gap-2 md:w-max">
@@ -71,10 +60,13 @@ const ManageToy = () => {
                   icon={<MagnifyingGlassIcon className="h-5 w-5" />}
                 />
               </div>
+              
+              <Link to={'/dashboardSellerOnly/addToy'}>
               <Button className="flex items-center gap-3" size="sm">
                 <ArrowDownTrayIcon strokeWidth={2} className="h-4 w-4" /> Add
                 Toy
               </Button>
+              </Link>
             </div>
           </div>
         </CardHeader>
@@ -109,44 +101,14 @@ const ManageToy = () => {
                   ? "p-4"
                   : "p-4 border-b border-blue-gray-50";
                     return  (
-                        <SingleManageToy key={ite?._id} classes={classes} ite={ite} />
+                        <SingleManageToy key={ite?._id} classes={classes} ite={ite} refetch={refetch} />
                       )
                 })}
               </>
             </tbody>
           </table>
         </CardBody>
-        {/* <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-        <Button variant="outlined" size="sm">
-          Previous
-        </Button>
-        <div className="flex items-center gap-2">
-          <IconButton variant="outlined" size="sm">
-            1
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            2
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            3
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            ...
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            8
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            9
-          </IconButton>
-          <IconButton variant="text" size="sm">
-            10
-          </IconButton>
-        </div>
-        <Button variant="outlined" size="sm">
-          Next
-        </Button>
-      </CardFooter> */}
+        
       </Card>
     </div>
   );
