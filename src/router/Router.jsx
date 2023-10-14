@@ -18,6 +18,7 @@ import AddToy from "../pages/dashboard/seller/addToy/AddToy";
 import ManageToy from "../pages/dashboard/seller/manageToy/ManageToy";
 import Carts from "../pages/dashboard/user/userProfile/Carts";
 import UpdateToy from "../pages/dashboard/seller/updateToy/UpdateToy";
+import Checkout from "../pages/dashboard/user/checkout/Checkout";
 
 
 export const router = createBrowserRouter([
@@ -53,6 +54,11 @@ export const router = createBrowserRouter([
             {
                 path: '/contact',
                 element: <Contact></Contact>
+            }
+           ,
+            {
+                path: '/checkout',
+                element: <Checkout></Checkout>
             }
            ,
             {

@@ -20,6 +20,7 @@ import ToyReview from "./toyReview/ToyReview";
 import { Link } from "react-scroll";
 import UserCart from "../../profile/cart/UserCart";
 import SideNavBar from "../../../components/sideNavBar/SideNavBar";
+import WhitelistButton from "../singleCard/WhitelistButton";
 
 
 
@@ -92,10 +93,11 @@ const ToyDetails = () => {
           </h4>
           {/* add to whitelist & Sizechart  */}
           <div className=" flex items-center space-x-5 mb-2">
-            <button className="text-sm text-blue-gray-700 flex space-x-2 items-center">
+            {/* <button className="text-sm text-blue-gray-700 flex space-x-2 items-center">
               <MdFavorite className="text-xl text-blue-gray-500" />{" "}
               <span>Add to Whitelist</span>
-            </button>
+            </button> */}
+            <WhitelistButton item={singleToy} />
             <button className="text-sm text-blue-gray-700 flex items-center space-x-1">
               <LiaChalkboardTeacherSolid className="text-xl text-blue-gray-700" />
               <span>Sizechart</span>

@@ -25,7 +25,7 @@ const Tranding = () => {
         <SideNavBar></SideNavBar>
         {/* <DealOfTheDay /> */}
       </div>
-        <div>
+        <div className="py-6 px-3">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
             {data?.data?.filter((item)=>item?.featured === "latest").map((trandToy,index)=><SingleTranding key={index} trandToy={trandToy} />)}
           </div>

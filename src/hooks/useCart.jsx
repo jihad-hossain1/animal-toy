@@ -6,7 +6,7 @@ import axios from "axios";
 
 const useCart = () => {
   const { user, loading } = useContext(AuthContext)
-  const { refetch, data: cart = [] } = useQuery({
+  const { refetch, data: cart = [] ,isError,isLoading,error} = useQuery({
     queryKey: ["carts", user?.email],
     enabled: !loading,
     queryFn: async () => {
@@ -15,6 +15,6 @@ const useCart = () => {
     },
   });
 
-  return [cart, refetch];
+  return [cart, refetch ,isError,isLoading,error];
 };
 export default useCart;

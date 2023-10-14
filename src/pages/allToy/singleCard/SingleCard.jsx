@@ -1,24 +1,22 @@
 import React, { useContext } from 'react';
 import {TbEye} from 'react-icons/tb'
-import {MdOutlineFavoriteBorder} from 'react-icons/md'
 import { Link } from 'react-router-dom';
-// import { Rating } from '@material-tailwind/react';
 import { Rate } from 'antd';
 import toast, { Toaster } from 'react-hot-toast';
 import { AuthContext } from '../../../authentication/AuthProvider';
 import useUserCart from '../../../hooks/useUserCart';
+import WhitelistButton from './WhitelistButton';
+
+
 const SingleCard = ({card}) => {
     const {price,images,toyTitle,rating,quantity} = card;
     const {user} = useContext(AuthContext)
     const [carts, refetch] = useUserCart()
-    // console.log(carts);
-    // const oneCart = carts.filter(item=>item.userCartItemId)
     
-    // console.log(oneCart);
-    const handleEnrollCart = async (toyObj)=>{
+    const handleCart = async (toyObj)=>{
         if(!user){
           return toast.error('login first')
-        return 
+       
         }else{
           const cartVerify = carts?.find(item=> item?.itemId == toyObj?._id)
           if(cartVerify){
@@ -71,16 +69,14 @@ const SingleCard = ({card}) => {
                                 <TbEye className='h-5 w-5' />
                             </button>
                             </Link>
-                            <button className='rounded-full p-1 flex items-center justify-center bg-white border border-blue-gray-100 mb-1 hover:bg-pink-300 hover:text-white transition-all duration-500'>
-                                <MdOutlineFavoriteBorder className='h-5 w-5' />
-                            </button>
-                            
+                            {/* whitelist button  */}
+                              <WhitelistButton item={card} />
                             
                             </div>
                         </div>
                        
                         <div className='flex justify-center mb-1'>
-                        <button onClick={()=>handleEnrollCart(card)} disabled={quantity == 0 } className='bg-[#f0c507] px-2 py-1 md:px-4 md:py-2 rounded text-black text-xs md:text-[14px] inline-block uppercase hover:bg-[#fc82bd] hover:text-white transition-all duration-500'>add to cart</button>
+                        <button onClick={()=>handleCart(card)} disabled={quantity == 0 } className='bg-[#f0c507] px-2 py-1 md:px-4 md:py-2 rounded text-black text-xs md:text-[14px] inline-block uppercase hover:bg-[#fc82bd] hover:text-white transition-all duration-500'>add to cart</button>
                         </div>
                     </div>
                 

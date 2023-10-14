@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { VscTag } from "react-icons/vsc";
 import { IoLogoUsd } from "react-icons/io";
 import { PiCurrencyGbpBold } from "react-icons/pi";
 import { TbLogin2, TbHelpTriangleFilled } from "react-icons/tb";
+import { RiHeartPulseFill } from "react-icons/ri";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { BiChevronDown, BiLogOut } from "react-icons/bi";
+
 import {
   Menu,
   MenuHandler,
@@ -14,9 +16,12 @@ import {
   Avatar,
 } from "@material-tailwind/react";
 import { AuthContext } from "../../../authentication/AuthProvider";
+import useWhitelist from "../../../hooks/useWhitelist";
+import { Badge } from "antd";
 
 const TopHeader = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [whitelist] =useWhitelist()
   // const [users] = 8
   return (
     <>
@@ -30,9 +35,13 @@ const TopHeader = () => {
           </div>
           <div className="py-2 px-1">
             <ul className="flex space-x-3 items-center">
-              <Link to={"/whitelist"}>
-                <li className="text-sm md:text-md">whiteList</li>
-              </Link>
+              <NavLink className={({isActive})=>isActive ? `text-pink-400 flex items-center space-x-2 hover:text-pink-300` : ` flex items-center space-x-2 hover:text-pink-300`} to={"/whitelist"}>
+               
+               <li className="text-sm md:text-md">whiteList</li>
+               <Badge color="gold" text='' size="small" count={whitelist ? whitelist.length : 0}>
+               <RiHeartPulseFill className="text-pink-400 text-xl" />
+               </Badge>
+              </NavLink>
               <div className="h-[10px] min-h-[20px] w-px self-stretch bg-gradient-to-tr from-transparent via-blue-gray-900 to-transparent opacity-20 dark:opacity-100"></div>
               <li className="cursor-pointer ">
                 <Menu>

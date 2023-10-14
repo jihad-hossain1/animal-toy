@@ -228,7 +228,7 @@ const LogoWithSearchNav = () => {
               <Link to={'/alltoys'} >
               <button onClick={closeDrawerRight} className='bg-[#fc82bd] px-2 py-1 md:px-4 md:py-2 rounded text-black text-xs md:text-[14px] inline-block uppercase hover:bg-[#f0c507] hover:text-white transition-all duration-500'>continue shop</button>
               </Link>
-              <Link to={'/myCarts'} >
+              <Link to={'/checkout'} >
               <button onClick={closeDrawerRight} disabled={cart?.length == 0}className='bg-[#f0c507] px-2 py-1 md:px-4 md:py-2 rounded text-black text-xs md:text-[14px] inline-block uppercase hover:bg-[#fc82bd] hover:text-white transition-all duration-500'>checkout</button>
               </Link>
             </div>
