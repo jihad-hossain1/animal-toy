@@ -4,7 +4,6 @@ import {
   Drawer,
   Button,
   Typography,
-  IconButton,
   List,
   ListItem,
   ListItemPrefix,
@@ -13,8 +12,20 @@ import {
   Accordion,
   AccordionHeader,
   AccordionBody,
+  MenuHandler,
+  Menu,
+  MenuList,
+  MenuItem,
 } from "@material-tailwind/react";
-import { InboxIcon } from "@heroicons/react/24/solid";
+import {
+  ArrowRightIcon,
+  Cog6ToothIcon,
+  InboxArrowDownIcon,
+  InboxIcon,
+  LifebuoyIcon,
+  PowerIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/solid";
 import { TbHorseToy } from "react-icons/tb";
 import { MdCollectionsBookmark } from "react-icons/md";
 import { GiBoxUnpacking } from "react-icons/gi";
@@ -23,16 +34,11 @@ import { TbArrowRoundaboutRight } from "react-icons/tb";
 import { RiBearSmileLine } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
-import { useLocation } from "react-router-dom";
-import DealOfTheDay from "./dealOfTheDay/DealOfTheDay";
+import { Link, useLocation } from "react-router-dom";
 
 const SideNavBar = () => {
   const location = useLocation();
-  // console.log(location.pathname);
-  const sideFilterNav = location.pathname.includes("/alltoys");
   const nosideFilterNav = location.pathname.includes("/alltoys");
-  // const homeTrandingNav = location.pathname.includes('') || location.pathname.includes('/')
-  // || location.pathname.includes('/alltoys') || location.pathname.includes('/contact') || location.pathname.includes('/tranding')
 
   const [open, setOpen] = useState(0);
   const [openCategory, setOpenCategory] = useState(false);
@@ -58,13 +64,13 @@ const SideNavBar = () => {
             />
           }
         >
-          <ListItem className="p-0" selected={open === 1}>
+          <ListItem className="p-0 " selected={open === 1}>
             <AccordionHeader
               onClick={() => handleOpen(1)}
               className="border-b-0 p-3 hover:text-pink-400"
             >
               <ListItemPrefix>
-                <TbHorseToy className="h-5 w-5" />
+                <MdCollectionsBookmark className="h-5 w-5" />
               </ListItemPrefix>
               <Typography
                 color="blue-gray"
@@ -76,12 +82,6 @@ const SideNavBar = () => {
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                List Item
-              </ListItem>
               <ListItem>
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -196,7 +196,8 @@ const SideNavBar = () => {
           </div>
         </div>
 
-        {sideNvList}
+        {/* {sideNvList} */}
+        <RightNav />
 
         {nosideFilterNav || (
           <div className="mt-4 hidden md:block   w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5  "></div>
@@ -224,3 +225,87 @@ const SideNavBar = () => {
 };
 
 export default SideNavBar;
+
+function RightNav() {
+  return (
+    <>
+      <div className="flex flex-col gap-3 px-3 py-2">
+        <button className="hover:text-pink-400">
+          <Menu allowHover placement="right-start">
+            <MenuHandler>
+              <div className="flex justify-between w-full " variant="outlined">
+                <Link to={"/alltoys"}>Toys</Link>
+                <ArrowRightIcon
+                  strokeWidth={2.5}
+                  className={`h-3 w-3 transition-transform`}
+                />
+              </div>
+            </MenuHandler>
+            <MenuList className="p-1 ml-2">
+              <MenuItem>Item 1</MenuItem>
+              <MenuItem>Item 2</MenuItem>
+              <MenuItem>Item 3</MenuItem>
+            </MenuList>
+          </Menu>
+        </button>
+        <button className="hover:text-pink-400">
+          <Menu allowHover placement="right-start">
+            <MenuHandler>
+              <div className="flex justify-between w-full " variant="outlined">
+                <h4>Accessories</h4>
+                <ArrowRightIcon
+                  strokeWidth={2.5}
+                  className={`h-3 w-3 transition-transform`}
+                />
+              </div>
+            </MenuHandler>
+            <MenuList className="p-1 ml-2">
+              <MenuItem>Item 1</MenuItem>
+              <MenuItem>Item 2</MenuItem>
+              <MenuItem>Item 3</MenuItem>
+            </MenuList>
+          </Menu>
+        </button>
+      </div>
+      <ListItem className="hover:text-pink-400">
+        <ListItemPrefix>
+          <InboxIcon className="h-5 w-5" />
+        </ListItemPrefix>
+        Collection
+        <ListItemSuffix>
+          <Chip
+            value="new"
+            size="sm"
+            variant="ghost"
+            color="pink"
+            className="rounded"
+          />
+        </ListItemSuffix>
+      </ListItem>
+      <ListItem className="hover:text-pink-400">
+        <ListItemPrefix>
+          <RiBearSmileLine className="h-5 w-5" />
+        </ListItemPrefix>
+        Teddies
+      </ListItem>
+      <ListItem className="hover:text-pink-400">
+        <ListItemPrefix>
+          <LuMailQuestion className="h-5 w-5" />
+        </ListItemPrefix>
+        FAQs
+      </ListItem>
+      <ListItem className="hover:text-pink-400">
+        <ListItemPrefix>
+          <GiBoxUnpacking className="h-5 w-5" />
+        </ListItemPrefix>
+        Toy Box
+      </ListItem>
+      <ListItem className="hover:text-pink-400">
+        <ListItemPrefix>
+          <TbArrowRoundaboutRight className="h-5 w-5" />
+        </ListItemPrefix>
+        About Us
+      </ListItem>
+    </>
+  );
+}
