@@ -17,7 +17,7 @@ const Contact = () => {
     }
   return (
     <div>
-        <Toaster />
+      <Toaster />
       <section className="bg-white dark:bg-gray-900">
         <div className="container px-6 py-12 mx-auto">
           <div>
@@ -166,18 +166,52 @@ const Contact = () => {
 
             <div className="p-4 py-6 rounded-lg bg-gray-50 dark:bg-gray-800 md:p-8">
               <form onSubmit={handleSubmit}>
-                    <div className="mb-2">
-                        <Input className="" required name="text" type="name" label="Your Name" color="pink" variant="outlined" />
-                    </div>
-                    <div className="mb-2">
-                        <Input className="" required name="email" type="email" label="Your Email" color="pink" variant="outlined" />
-                    </div>
-                    <div className="mb-2">
-                        <Textarea className="" required name="message" type="text" label="Your Message" placeholder="Leave a message" color="pink" variant="outlined" />
-                    </div>
-                    <div className="mb-2 w-full">
-                        <Button className="w-full"  name="text"  type="submit" label="" color="amber" variant="gradient"> Submit </Button>
-                    </div>
+                <div className="mb-4">
+                  <Input
+                    className=""
+                    required
+                    name="text"
+                    type="name"
+                    label="Your Name"
+                    color="pink"
+                    variant="outlined"
+                  />
+                </div>
+                <div className="mb-4">
+                  <Input
+                    className=""
+                    required
+                    name="email"
+                    type="email"
+                    label="Your Email"
+                    color="pink"
+                    variant="outlined"
+                  />
+                </div>
+                <div className="mb-4">
+                  <Textarea
+                    className=""
+                    required
+                    name="message"
+                    type="text"
+                    label="Your Message"
+                    color="pink"
+                    variant="outlined"
+                  />
+                </div>
+                <div className="mb-4 w-full">
+                  <Button
+                    className="w-full"
+                    name="text"
+                    type="submit"
+                    label=""
+                    color="amber"
+                    variant="gradient"
+                  >
+                    {" "}
+                    Submit{" "}
+                  </Button>
+                </div>
               </form>
             </div>
           </div>

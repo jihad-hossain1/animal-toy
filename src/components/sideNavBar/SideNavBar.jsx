@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { AiOutlinePicRight } from "react-icons/ai";
 import {
   Drawer,
-  Button,
   Typography,
   List,
   ListItem,
@@ -17,16 +16,7 @@ import {
   MenuList,
   MenuItem,
 } from "@material-tailwind/react";
-import {
-  ArrowRightIcon,
-  Cog6ToothIcon,
-  InboxArrowDownIcon,
-  InboxIcon,
-  LifebuoyIcon,
-  PowerIcon,
-  UserCircleIcon,
-} from "@heroicons/react/24/solid";
-import { TbHorseToy } from "react-icons/tb";
+import { ArrowRightIcon, InboxIcon } from "@heroicons/react/24/solid";
 import { MdCollectionsBookmark } from "react-icons/md";
 import { GiBoxUnpacking } from "react-icons/gi";
 import { LuMailQuestion } from "react-icons/lu";
@@ -186,7 +176,7 @@ const SideNavBar = () => {
   return (
     <>
       {/* h-[calc(100vh-2rem)] */}
-      <div className="hidden md:block   w-full max-w-[20rem]  shadow-sm shadow-blue-gray-900/5 ">
+      <div className="hidden md:block    max-w-[20rem]  shadow-sm shadow-blue-gray-900/5 min-w-[250px]">
         <div className="mb-2">
           <div className="bg-[#ffd92e]  drop-shadow">
             <h4 className=" w-full uppercase font-semibold py-3 flex items-center  space-x-3 px-5">
