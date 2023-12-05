@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -11,8 +11,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
-
-
+import { filterReducer } from "../utils/productReducer";
 
 export const AuthContext = createContext(null);
 
@@ -55,6 +54,12 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  const [filterState, filterDispatch] = useReducer(filterReducer, {
+    byStock: false,
+    byFastDelivery: false,
+    byRating: 0,
+    searchQuery: "",
+  });
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -67,6 +72,8 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const authInfo = {
+    filterState,
+    filterDispatch,
     user,
     loading,
     setLoading,
